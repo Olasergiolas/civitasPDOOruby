@@ -47,12 +47,69 @@ module Civitas
       casillas.push('Salida')  
     end
     
-    private
+    attr_reader :numCasillaCarcel
     
-    def correcto
-      
+    def getPorSalida
+      if @porSalida > 0
+        @porSalida -= 1
+        @porSalida + 1              #Supongo que se hace así?
+        
+      else
+        @porSalida
+      end
     end
     
+    def añadeCasilla(casilla)
+      carcel = Casilla.new("Cárcel")
+      
+      
+      if (casillas.length == numCasillaCarcel)
+        casillas.push(carcel)
+      end
+      
+      casillas.push(casilla)
+      
+      while (casillas.length == numCasillaCarcel)
+        casillas.push(carcel)
+      end
+    end
+    
+    def añadeJuez
+      casillajuez = Casilla.new("Juez")
+      if @tieneJuez == false
+        casillas.push(casillajuez)
+        @tieneJuez = true
+      end
+    end
+    
+    def getCasilla(n)
+      if n <= casillas.length
+        casillas[n]
+        
+      else
+        nil
+      end
+    end
+    
+    
+    private
+    
+      def correcto
+        correcto = false
+        
+        if (@casillas.length > @numCasillaCarcel && @tieneJuez == true)
+          correcto = true
+        end
+        
+      end
+      
+      def correcto(n)
+        correcto = false
+        
+        if (correcto == true && n <= @casillas.length)
+          correcto = true
+        end
+      end
     
   end
   
@@ -60,10 +117,8 @@ module Civitas
     attr_reader :nombre
     
     def initialize(n)
-      @nombre = n
-    end
-    
-    
-  end
-  
+      private
+        @nombre = n
+    end 
+  end  
 end
