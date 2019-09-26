@@ -91,6 +91,26 @@ module Civitas
       end
     end
     
+    def nuevaPosicion(actual, tirada)
+      desplazamiento = actual + tirada
+      if (correcto == true && desplazamiento >= @casillas.length)
+        desplazamiento %= @casillas.length
+        porSalida++
+        
+      elsif correcto == false
+        desplazamiento = -1
+        
+      end
+      
+     def calcularTirada(origen, destino)
+       tirada = destino - origen
+       if tirada < 0
+         tirada += @casillas.length
+       end
+     end
+      
+    end
+    
     
     private
     
@@ -110,7 +130,6 @@ module Civitas
           correcto = true
         end
       end
-    
   end
   
   class Casilla
@@ -121,4 +140,13 @@ module Civitas
         @nombre = n
     end 
   end  
+  
+  class Diario
+    include Singleton
+    
+    def initialize
+      @eventos = []
+    end
+    
+  end
 end
