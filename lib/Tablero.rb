@@ -2,35 +2,8 @@
 # To change this template file, choose Tools | Templates
 # and open the template in the editor.
 
-#enconding: UTF-8
-
 module Civitas
-  module Operaciones_juego
-    AVANZAR = :avanzar
-    COMPRAR = :comprar
-    GESTIONAR = :gestionar
-    SALIR_CARCEL = :salir_carcel
-    PASAR_TURNO = :pasar_turno
-  end
-  
-  module TipoCasilla
-    CALLE = :calle
-    SORPRESA = :sorpresa
-    JUEZ = :juez
-    IMPUESTO = :impuesto
-    DESCANSO = :descanso
-  end
-  
-  module TipoSorpresa
-    IRCARCEL = :ircarcel
-    IRCASILLA = :ircasilla
-    PAGARCOBRAR = :pagarcobrar
-    PORCASAHOTEL = :porcasahotel
-    PORJUGADOR = :porjugador
-    SALIRCARCEL = :salircarcel
-  end
-  
-  class Tablero
+    class Tablero
     def initialize(cas)
       @numCasillaCarcel
       @porSalida = 0
@@ -95,7 +68,7 @@ module Civitas
       desplazamiento = actual + tirada
       if (correcto == true && desplazamiento >= @casillas.length)
         desplazamiento %= @casillas.length
-        porSalida++
+        porSalida += 1
         
       elsif correcto == false
         desplazamiento = -1
@@ -130,23 +103,5 @@ module Civitas
           correcto = true
         end
       end
-  end
-  
-  class Casilla
-    attr_reader :nombre
-    
-    def initialize(n)
-      private
-        @nombre = n
-    end 
-  end  
-  
-  class Diario
-    include Singleton
-    
-    def initialize
-      @eventos = []
-    end
-    
   end
 end
