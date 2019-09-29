@@ -1,4 +1,7 @@
+#encoding: UTF-8
+
 require 'singleton'
+
 module Civitas
   class Diario
     include Singleton

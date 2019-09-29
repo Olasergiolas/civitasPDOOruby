@@ -2,11 +2,16 @@
 # To change this template file, choose Tools | Templates
 # and open the template in the editor.
 
+#encoding: UTF-8
+
 require 'singleton'
+require './Diario'
+
 module Civitas
     class Dado
     include Singleton
-      def initializate
+    
+      def initializate()
         @random
         @ultimoResultado
         @debug = false
@@ -43,6 +48,7 @@ module Civitas
         end
       end
       
-      att_reader :ultimoResultado
+      attr_reader :ultimoResultado
+      
     end
 end
