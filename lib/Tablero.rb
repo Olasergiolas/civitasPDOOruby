@@ -32,7 +32,7 @@ module Civitas
       end
     end
     
-    def añadeCasilla(casilla)
+    def aniadeCasilla(casilla)
       carcel = Casilla.new("Cárcel")
       
       
@@ -47,7 +47,7 @@ module Civitas
       end
     end
     
-    def añadeJuez
+    def aniadeJuez
       casillajuez = Casilla.new("Juez")
       if @tieneJuez == false
         casillas.push(casillajuez)
