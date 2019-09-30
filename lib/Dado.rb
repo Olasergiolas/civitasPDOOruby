@@ -11,7 +11,7 @@ module Civitas
     class Dado
     include Singleton
     
-      def initializate()
+      def initializate
         @random
         @ultimoResultado
         @debug = false
@@ -21,8 +21,10 @@ module Civitas
       def tirar
         if @debug == false
           @random = 1 + rand(6)
+          @ultimoResultado = @random
         else
           @random = 1
+          @ultimoResultado = @random
         end
       end
       
@@ -40,9 +42,9 @@ module Civitas
       def setDebug(d)
         @debug = d
         if d == true
-          Diario.ocurre_evento("Modo debug Dado activado.")
+          Diario.instance.ocurre_evento("Modo debug Dado activado.")
         elsif d == false
-          Diario.ocurre_evento("Modo debug Dado desactivado.")
+          Diario.instance.ocurre_evento("Modo debug Dado desactivado.")
         else
           @debug = false
         end

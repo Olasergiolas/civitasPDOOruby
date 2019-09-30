@@ -8,21 +8,22 @@ require './Diario'
 
 module Civitas
     class MazoSorpresas
+    
+    def initialize(d = false)
       @sorpresas = Array.new
       @barajada
       @usadas
-      @debug = false
       @cartasEspeciales = Array.new
       @ultimaSorpresa
-    end
-    
-    def initialize(d = false)
+      
       if (d == false || d == true)
         @debug = d
+      else
+        @debug = false
       end
       init
       if (@debug == true)
-        Diario.ocurre_evento("Modo debug activado.")
+        Diario.instance.ocurre_evento("Modo debug activado.")
       end
     end
     
@@ -49,18 +50,18 @@ module Civitas
     end
     
     def inhabilitarCartaEspecial(sorpresa)
-      if @sorpresa.include?(sorpresa) == true
-        @sorpresa.delete(sorpresa)
+      if @sorpresas.include? sorpresa == true
+        @sorpresas.delete(sorpresa)
         @cartasEspeciales << sorpresa
-        Diario.ocurre_evento("Se ha inhabilitado la carta sorpresa ???") # falta clase sorpresa para poder intentar referenciarla
+        Diario.instance.ocurre_evento("Se ha inhabilitado la carta sorpresa ???") # falta clase sorpresa para poder intentar referenciarla
       end
     end
     
     def habilitarCartaEspecial(sorpresa)
-      if @cartasEspeciales.include?(sorpresa) == true
+      if @cartasEspeciales.include? sorpresa == true
         @cartasEspeciales.delete(sorpresa)
-        @sorpresa << sorpresa
-        Diario.ocurre_evento("Se ha habilitado la carta sorpresa ???") # el mismo problema sargento MacJohnson
+        @sorpresas << sorpresa
+        Diario.instance.ocurre_evento("Se ha habilitado la carta sorpresa ???") # el mismo problema sargento MacJohnson
       end
     end
     
@@ -69,4 +70,5 @@ module Civitas
       @barajada = false
       @usadas = 0
     end
+  end
 end
