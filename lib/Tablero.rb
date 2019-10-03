@@ -21,7 +21,8 @@ module Civitas
         @numCasillaCarcel = 1
       end
       
-      casillas.push('Salida')  
+      salida = Casilla.new('Salida')
+      casillas.push(salida)
     end
     
     attr_reader :numCasillaCarcel
