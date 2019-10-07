@@ -18,6 +18,7 @@ module Civitas
       @saldo
       @propiedades = Array.new
     end
+    #falta salvoconducto
    
     def self.newCopy(otro)
       copia = new(otro.nombre)
@@ -29,6 +30,7 @@ module Civitas
     end
     
     attr_reader :@@hotelesMax, :@nombre, :@numCasillaActual, :@@precioLibertad, :@saldo, :@encarcelado, :@puedeComprar, :@propiedades
+    attr_writer :@saldo, :@numCasillaActual
     
     def cancelarHipoteca(ip)
       
@@ -86,9 +88,81 @@ module Civitas
       
     end
     
+    def obtenerSalvoconducto(sorpresa)
+      
+    end
+    
+    def paga(cantidad)
+      
+    end
+    
+    def pagaAlquiler(cantidad)
+      
+    end
+    
+    def pagaImpuesto(cantidad)
+      
+    end
+    
+    def pasaPorSalida
+      
+    end
+    
+    def perderSalvoConducto
+      
+    end
+    
+    def puedeComprarCasilla
+      
+    end
+    
+    def puedeSalirCarcelPagando
+      
+    end
+    
+    def puedoEdificarCasa(propiedad)
+      
+    end
+    
+    def puedoEdificarHotel(propiedad)
+      
+    end
+    
+    def puedoGastar(precio)
+      
+    end
+    
+    def recibe(cantidad)
+      
+    end
+    
+    def salirCarcelPagando
+      
+    end
+    
+    def salirCarcelTirando
+      
+    end
+    
+    def tieneAlgoQueGestionar
+      
+    end
+    
+    def tieneSalvoconducto
+      
+    end
+    
+    def toString
+      
+    end
+    
+    def vender(ip)
+      
+    end
+    
     protected :@@casasMax, :@@casasPorHotel, :@@hotelesMax, :@@pasoPorSalida, :@@precioLibertad, :@@saldoInicial, :debeSerEncarcelado, :nombre, :getPropiedades, :saldo
     
-    private :existeLaPropiedad, :hotelesMax, :precioLibertad, :getPremioPasoSalida
+    private :existeLaPropiedad, :hotelesMax, :precioLibertad, :getPremioPasoSalida, :perderSalvoConducto, :puedeSalirCarcelPagando, :puedoEdificarCasa, :puedoEdificarHotel, :puedoGastar
     
   end
 end
