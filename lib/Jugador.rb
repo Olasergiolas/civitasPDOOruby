@@ -17,8 +17,8 @@ module Civitas
       @puedeComprar
       @saldo
       @propiedades = Array.new
+      @salvoconducto
     end
-    #falta salvoconducto
    
     def self.newCopy(otro)
       copia = new(otro.nombre)
