@@ -18,18 +18,14 @@ module Civitas
       @saldo
       @propiedades = Array.new
     end
-    
-    def copiar(encarcelado, nombre, numCasillaActual, puedeComprar, saldo, propiedades)
-      @encarcelado = encarcelado
-      @nombre = nombre
-      @numCasillaActual = numCasillaActual
-      @puedeComprar = puedeComprar
-      @saldo = saldo
-      @propiedades = propiedades
-    end
-    
+   
     def self.newCopy(otro)
-      copiar(otro.encarcelado, otro.nombre, otro.numCasillaActual, otro.puedeComprar, otro.saldo, otro.propiedades)
+      copia = new(otro.nombre)
+      copia.encarcelado = otro.encarcelado
+      copia.numCasillaActual = otro.numCasillaActual
+      copia.puedeComprar = otro.puedeComprar
+      copia.saldo = otro.saldo
+      propiedades = otro.propiedades
     end
     
     attr_reader :@@hotelesMax, :@nombre, :@numCasillaActual, :@@precioLibertad, :@saldo, :@encarcelado, :@puedeComprar, :@propiedades
