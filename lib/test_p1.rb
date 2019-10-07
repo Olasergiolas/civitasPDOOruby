@@ -16,10 +16,10 @@ module Civitas
     def main
       #Primer Apartado
 
-      @D = Dado.send :new           #Por qué no puedo hacer Dado.new??
+      @D = Dado.instance         
       @repeticiones = [0, 0, 0, 0]
       @mazo = MazoSorpresas.new
-      @Diario = Diario.send :new
+      @Diario = Diario.instance
 
       for a in 1..100 do
         resultado = @D.quienEmpieza(4)

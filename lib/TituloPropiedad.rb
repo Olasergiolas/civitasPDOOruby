@@ -21,9 +21,91 @@ module Civitas
       @propietario = Jugador.new
     end
     
+    attr_reader :@hipotecado, :@nombre, :@numCasas, :@numHoteles, :@propietario
+    
     def toString
       puts "#{@nombre}, #{@alquilerBase}, #{@factorRevalorizacion}, #{@hipotecaBase}, hipotecado: #{@hipotecado},
         #{@nombre}, #{@numCasas}, #{@numHoteles}, #{@precioCompra}, #{@precioEdificar}, #{@propietario}"
+    end
+    
+    def propietarioEncarcelado
+      
+      if (@propietario.isEncarcelado() == true)
+        encarcelado = true
+      
+      else
+        encarcelado = false
+      end
+    end
+    
+    def acutalizaPropietarioPorConversion(jugador)
+      
+    end
+    
+    def cancelarHipoteca(jugador)
+      
+    end
+    
+    def cantidadCasasHoteles
+      
+    end
+    
+    def comprar(jugador)
+      
+    end
+    
+    def construirCasa(jugador)
+      
+    end
+    
+    def construirHotel(jugador)
+      
+    end
+    
+    def derruirCasas(n, jugador)
+      
+    end
+    
+    def getImporteCancelarHipoteca
+      cantidadRecibida = @hipotecaBase*(1+(@numCasas*0.5)+(@numHoteles*2.5))*@@factorInteresesHipoteca
+    end
+    
+    def getPrecioCompra
+      
+    end
+    
+    def getPrecioEdificar
+      
+    end
+    
+    def getPrecioVenta
+      
+    end
+    
+    def hipotecar(jugador)
+      
+    end
+    
+    def tienePropietario
+      
+    end
+    
+    def tramitarAlquiler(jugador)
+      
+    end
+    
+    def vender(jugador)
+      
+    end
+    
+    private
+    
+    def esEsteElPropietario(jugador)
+      
+    end
+    
+    def getImporteHipoteca
+      
     end
     
     def getPrecioAlquiler
@@ -37,12 +119,6 @@ module Civitas
     
     def propietarioEncarcelado
       
-      if (@propietario.isEncarcelado() == true)
-        encarcelado = true
-      
-      else
-        encarcelado = false
-      end
     end
   end
 end
