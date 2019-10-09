@@ -86,6 +86,6 @@ module Civitas
       
     end
     
-    attr_reader :@nombre, :@tituloPropiedad
+    attr_reader :nombre, :tituloPropiedad
   end 
 end
