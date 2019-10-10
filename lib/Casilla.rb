@@ -7,7 +7,7 @@
 module Civitas  
     class Casilla
     
-    @@carcel
+    @@carcel = 0
     def initialize(nombre)
         @nombre = nombre
         @importe
@@ -17,7 +17,7 @@ module Civitas
         @tituloPropiedad
     end 
     
-    def self.initialize_t(titulo)
+    def self.new_t(titulo)
       @nombre
       @importe
       @tipo
@@ -26,7 +26,7 @@ module Civitas
       @tituloPropiedad = titulo
     end
     
-    def self.initialize_c_n(cantidad, nombre)
+    def self.new_c_n(cantidad, nombre)
       @nombre = nombre
       @importe = cantidad
       @tipo
@@ -35,7 +35,7 @@ module Civitas
       @tituloPropiedad
     end
     
-    def self.initialize_num_n(numCasillaCarcel, nombre)
+    def self.new_num_n(numCasillaCarcel, nombre)
       @@carcel = numCasillaCarcel
       @nombre = nombre
       @importe
@@ -45,7 +45,7 @@ module Civitas
       @tituloPropiedad
     end
     
-    def self.initialize_m_n(mazo, nombre)
+    def self.new_m_n(mazo, nombre)
       @nombre = nombre
       @importe
       @tipo
