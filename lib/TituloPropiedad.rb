@@ -1,6 +1,6 @@
 # To change this license header, choose License Headers in Project Properties.
 # To change this template file, choose Tools | Templates
-# and open the template in the editor.
+# and open the template in the editor
 
 require './Jugador'
 
@@ -21,7 +21,7 @@ module Civitas
       @propietario
     end
     
-    attr_reader :hipotecado, :nombre, :numCasas, :numHoteles, :propietario
+    attr_reader :hipotecado, :nombre, :numCasas, :numHoteles, :propietario #aaaaa
     
     def toString
       puts "#{@nombre}, #{@alquilerBase}, #{@factorRevalorizacion}, #{@hipotecaBase}, hipotecado: #{@hipotecado},
