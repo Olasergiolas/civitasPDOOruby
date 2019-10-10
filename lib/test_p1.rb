@@ -9,6 +9,7 @@ require './MazoSorpresas'
 require './Sorpresa'
 require './Casilla'
 require './Diario'
+require './Jugador'
 
 module Civitas
   class TestP1

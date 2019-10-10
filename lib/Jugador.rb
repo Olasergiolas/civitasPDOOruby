@@ -29,8 +29,8 @@ module Civitas
       propiedades = otro.propiedades
     end
     
-    attr_reader :@@hotelesMax, :@nombre, :@numCasillaActual, :@@precioLibertad, :@saldo, :@encarcelado, :@puedeComprar, :@propiedades
-    attr_writer :@saldo, :@numCasillaActual
+    attr_reader :hotelesMax, :casasMax, :casasPorHotel, :encarcelado, :nombre, :numCasillaActual, :precioLibertad, :saldo, :encarcelado, :puedeComprar, :propiedades
+    attr_writer :saldo, :numCasillaActual
     
     def cancelarHipoteca(ip)
       
@@ -160,9 +160,9 @@ module Civitas
       
     end
     
-    protected :@@casasMax, :@@casasPorHotel, :@@hotelesMax, :@@pasoPorSalida, :@@precioLibertad, :@@saldoInicial, :debeSerEncarcelado, :nombre, :getPropiedades, :saldo
+    protected :debeSerEncarcelado, :nombre, :getPropiedades, :saldo
     
-    private :existeLaPropiedad, :hotelesMax, :precioLibertad, :getPremioPasoSalida, :perderSalvoConducto, :puedeSalirCarcelPagando, :puedoEdificarCasa, :puedoEdificarHotel, :puedoGastar
+    private :existeLaPropiedad, :hotelesMax, :casasMax, :precioLibertad, :getPremioPasoSalida, :perderSalvoConducto, :puedeSalirCarcelPagando, :puedoEdificarCasa, :puedoEdificarHotel, :puedoGastar
     
   end
 end
