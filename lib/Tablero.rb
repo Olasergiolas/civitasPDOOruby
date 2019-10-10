@@ -73,7 +73,7 @@ module Civitas
       desplazamiento = actual + tirada
       if (correcto == true && desplazamiento >= @casillas.length)
         desplazamiento %= @casillas.length
-        porSalida += 1
+        porSalida = porSalida + 1
         
       elsif correcto == false
         desplazamiento = -1

@@ -6,6 +6,10 @@
 
 require './Diario'
 require './TipoSorpresa'
+require './Jugador'
+require './Dado'
+require './Tablero'
+require './Casilla'
 
 module Civitas
     class Sorpresa
@@ -98,7 +102,15 @@ module Civitas
       private
       
       def aplicarAJugador_irACasilla(actual, todos)
-        
+        if (jugadorCorrecto == true)
+          informe(actual, todos)
+          casillajug = todos[actual].numCasillaActual
+          tirada = @tablero.calcularTirada(casillajug, @valor)
+          npos = todos[actual].nuevaPosicion(casillajug, tirada)
+          todos[actual].moverACasilla(npos)
+          @tablero.getCasilla(@valor).recibeJugador(actual, todos)
+          
+        end
       end
       
       def aplicarAJugador_irCarcel(actual, todos)
