@@ -21,7 +21,7 @@ module Civitas
       @propietario
     end
     
-    attr_reader :@hipotecado, :@nombre, :@numCasas, :@numHoteles, :@propietario
+    attr_reader :hipotecado, :nombre, :numCasas, :numHoteles, :propietario
     
     def toString
       puts "#{@nombre}, #{@alquilerBase}, #{@factorRevalorizacion}, #{@hipotecaBase}, hipotecado: #{@hipotecado},
