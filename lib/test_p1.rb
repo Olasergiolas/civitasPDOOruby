@@ -10,18 +10,20 @@ require './Sorpresa'
 require './Casilla'
 require './Diario'
 require './Jugador'
+require './TipoSorpresa'
 
 module Civitas
   class TestP1
-
-    def main
-      #Primer Apartado
-
+    
+    def initialize
       @D = Dado.instance         
       @repeticiones = [0, 0, 0, 0]
       @mazo = MazoSorpresas.new
       @Diario = Diario.instance
+    end
 
+    def main
+      #Primer Apartado
       for a in 1..100 do
         resultado = @D.quienEmpieza(4)
         @repeticiones[resultado] = @repeticiones[resultado] + 1
