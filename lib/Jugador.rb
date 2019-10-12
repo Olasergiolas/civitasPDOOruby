@@ -76,15 +76,15 @@ module Civitas
       
     end
     
-    def getPropiedades
-      
-    end
-    
-    def getPuedeComprar
-      
-    end
-    
     def hipotecar(ip)
+      
+    end
+    
+    def modificarSaldo(cantidad)
+      
+    end
+    
+    def moverACasilla(numCasilla)
       
     end
     
