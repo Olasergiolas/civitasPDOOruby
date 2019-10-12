@@ -4,62 +4,76 @@
 
 #encoding: UTF-8
 
+require './Jugador'
+require './TipoCasilla'
+
 module Civitas  
     class Casilla
     
     @@carcel = 0
     def initialize(nombre)
-        @nombre = nombre
-        @importe
-        @tipo
-        @mazo
-        @sorpresa
-        @tituloPropiedad
+      init
+      @nombre = nombre
+      @importe
+      @tipo = TipoCasilla::DESCANSO
+      @mazo
+      @sorpresa
+      @tituloPropiedad
     end 
     
     def self.new_t(titulo)
-      @nombre
+      init
+      @nombre = titulo.nombre
       @importe
-      @tipo
+      @tipo = TipoCasilla::CALLE
       @mazo
       @sorpresa
       @tituloPropiedad = titulo
     end
     
     def self.new_c_n(cantidad, nombre)
+      init
       @nombre = nombre
       @importe = cantidad
-      @tipo
+      @tipo = TipoCasilla::IMPUESTO
       @mazo
       @sorpresa
       @tituloPropiedad
     end
     
     def self.new_num_n(numCasillaCarcel, nombre)
+      init
       @@carcel = numCasillaCarcel
       @nombre = nombre
       @importe
-      @tipo
+      @tipo = TipoCasilla::JUEZ
       @mazo
       @sorpresa
       @tituloPropiedad
     end
     
     def self.new_m_n(mazo, nombre)
+      init
       @nombre = nombre
       @importe
-      @tipo
+      @tipo = TipoCasilla::SORPRESA
       @mazo = mazo
       @sorpresa
       @tituloPropiedad
     end
     
     def informe(iactual, todos)
-      
+      Diario.instance.ocurre_evento('El jugador #{todos[iactual].nombre} ha caído en una casilla #{@tipo}')
+      toString
     end
     
     def jugadorCorrecto(iactual, todos)
+      correcto = false
+      if (iactual > 0 && iactual <= todos.size)
+        correcto = true
+      end
       
+      return correcto
     end
     
     def recibeJugador(iactual, todos)
@@ -71,11 +85,17 @@ module Civitas
     end
     
     def recibeJugador_impuesto(iactual, todos)
-      
+      if jugadorCorrecto
+        informe(iactual, todos)
+        todos[iactual].pagaImpuesto(@importe)
+      end
     end
     
     def recibeJugador_juez(iactual, todos)
-      
+      if jugadorCorrecto
+        informe(iactual, todos)
+        todos[iactual].encarcelar(@@carcel)
+      end
     end
     
     def recibeJugador_sorpresa(iactual, todos)
@@ -83,7 +103,14 @@ module Civitas
     end
     
     def toString
-      
+      info = 'Casilla #{@nombre} con importe #{@importe}, de tipo #{@tipo}, con un TítuloPropiedad de nombre #{@tituloPropiedad.nombre}'
+    end
+    
+    def init
+      @mazo                                           #Qué entendemos por un valor adecuado???????
+      @sorpresa
+      @tituloPropiedad
+      @importe = 0
     end
     
     attr_reader :nombre, :tituloPropiedad
