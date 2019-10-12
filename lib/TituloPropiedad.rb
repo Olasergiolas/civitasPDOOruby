@@ -30,7 +30,7 @@ module Civitas
     
     def propietarioEncarcelado
       
-      if (@propietario.isEncarcelado() == true)
+      if (@propietario.isEncarcelado())
         encarcelado = true
       
       else
@@ -43,7 +43,7 @@ module Civitas
     end
     
     def cancelarHipoteca(jugador)
-      if (@hipotecado == true && esEsteElPropietario(jugador) == true)
+      if (@hipotecado && esEsteElPropietario(jugador))
         jugador.paga(getImporteCancelarHipoteca())
         @hipotecado = false;
         return true
@@ -60,7 +60,7 @@ module Civitas
     
     def comprar(jugador)
       booleano = false
-      if (tienePropietario == false)
+      if (!tienePropietario)
         @propietario = jugador
         jugador.paga(getPrecioCompra)
         booleano = true
@@ -71,7 +71,7 @@ module Civitas
     
     def construirCasa(jugador)
       booleano = false
-      if (esEsteElPropietario(jugador) == true)
+      if (esEsteElPropietario(jugador))
         jugador.paga(@precioCompra)                              #No sé cuál se supone que es el precio
         @numCasas = @numCasas + 1
         booleano = true
@@ -82,7 +82,7 @@ module Civitas
     
     def construirHotel(jugador)
       booleano = false
-      if (esEsteElPropietario(jugador) == true)
+      if (esEsteElPropietario(jugador))
         jugador.paga(@precioCompra)                              #No sé cuál se supone que es el precio
         @numHoteles = @numHoteles + 1
         booleano = true
@@ -92,7 +92,7 @@ module Civitas
     end
     
     def derruirCasas(n, jugador)
-      if (esEsteElPropietario(jugador) == true && @numCasas >= n)
+      if (esEsteElPropietario(jugador) && @numCasas >= n)
         @numCasas = @numCasas - n
         return true
         
@@ -118,7 +118,7 @@ module Civitas
     end
     
     def hipotecar(jugador)
-      if (@hipotecado == false && esEsteElPropietario(jugador) == true)
+      if (!@hipotecado && esEsteElPropietario(jugador))
         jugador.recibe(getImporteHipoteca)
         @hipotecado = true
         return true
@@ -133,7 +133,7 @@ module Civitas
     end
     
     def tramitarAlquiler(jugador)
-      if (tienePropietario() == true && esEsteElPropietario(jugador) == false)
+      if (tienePropietario() && !esEsteElPropietario(jugador))
         jugador.pagaAlquiler(getPrecioAlquiler)
         @propietario.recibe(getPrecioAlquiler)
       end
@@ -147,7 +147,7 @@ module Civitas
     
     def esEsteElPropietario(jugador)
       booleano = false
-      if (@propietario.compareTo(jugador) == true)
+      if (@propietario.compareTo(jugador))
         booleano = true
       end
       
@@ -159,7 +159,7 @@ module Civitas
     end
     
     def getPrecioAlquiler
-      if (@hipotecado == true || propietarioEncarcelado() == true)
+      if (@hipotecado || propietarioEncarcelado())
         precio_alquiler = 0
       
       else
