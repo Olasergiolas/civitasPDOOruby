@@ -40,8 +40,8 @@ module Civitas
       
     end
     
-    def compareTo(jugador)
-      
+    def <=>(jugador)
+      saldo <=> jugador.saldo
     end
     
     def comprar(titulo)
@@ -149,7 +149,9 @@ module Civitas
     end
     
     def pasaPorSalida
-      
+      modificarSaldo(1000)
+      Diario.instance.ocurre_evento('El jugador #{@nombre} ha pasado por la salida')
+      return true
     end
     
     def perderSalvoConducto
@@ -167,7 +169,11 @@ module Civitas
     end
     
     def puedeSalirCarcelPagando
+      puede = false
       
+      if @saldo >= 200
+        puede = true
+      end
     end
     
     def puedoEdificarCasa(propiedad)
@@ -198,15 +204,32 @@ module Civitas
     end
     
     def salirCarcelPagando
+      resultado = false
       
+      if @encarcelado && puedeSalirCarcelPagando
+        paga(200)
+        @encarcelado = false
+        Diario.instance.ocurre_evento('El jugador #{@nombre} paga para salir de la cárcel')
+        resultado = true
+      end
     end
     
     def salirCarcelTirando
+      resultado = false
       
+      if @encarcelado && Dado.instance.salgoDeLaCarcel
+        @encarcelado = false
+        Diario.instance.ocurre_evento('El jugador #{@nombre} sale de la cárcel con un 5')
+        resultado = true
+      end
     end
     
     def tieneAlgoQueGestionar
+      tienePropiedades = false
       
+      if @propiedades.size > 0
+        tienePropiedades = true
+      end
     end
     
     def tieneSalvoconducto
