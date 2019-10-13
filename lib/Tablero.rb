@@ -41,13 +41,13 @@ module Civitas
       carcel = Casilla.new("Cárcel")
       
       
-      if (@casillas.length == numCasillaCarcel)
+      if (@casillas.length == @numCasillaCarcel)
         @casillas.push(carcel)
       end
       
       @casillas.push(casilla)
       
-      while (@casillas.length == numCasillaCarcel)
+      while (@casillas.length == @numCasillaCarcel)
         @casillas.push(carcel)
       end
     end
@@ -93,19 +93,19 @@ module Civitas
     private
     
       def correcto
-        correcto = false
+        c = false
         
         if (@casillas.length > @numCasillaCarcel && @tieneJuez == true)
-          correcto = true
+          c = true
         end
         
       end
       
-      def correcto(n)
-        correcto = false
+      def correctoN(n)
+        c = false
         
         if (correcto == true && n <= @casillas.length)
-          correcto = true
+          c = true
         end
       end
   end

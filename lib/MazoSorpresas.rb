@@ -5,6 +5,7 @@
 #encoding: UTF-8
 
 require_relative 'Diario'
+require_relative 'Sorpresa'
 
 module Civitas
     class MazoSorpresas
@@ -54,7 +55,7 @@ module Civitas
       if @sorpresas.include? sorpresa == true
         @sorpresas.delete(sorpresa)
         @cartasEspeciales << sorpresa
-        Diario.instance.ocurre_evento("Se ha inhabilitado la carta sorpresa ???") # falta clase sorpresa para poder intentar referenciarla
+        Diario.instance.ocurre_evento("Se ha inhabilitado la carta sorpresa #{sorpresa.toString}")
       end
     end
     
@@ -62,7 +63,7 @@ module Civitas
       if @cartasEspeciales.include? sorpresa == true
         @cartasEspeciales.delete(sorpresa)
         @sorpresas << sorpresa
-        Diario.instance.ocurre_evento("Se ha habilitado la carta sorpresa ???") # el mismo problema sargento MacJohnson
+        Diario.instance.ocurre_evento("Se ha habilitado la carta sorpresa #{sorpresa.toString}")
       end
     end
     
