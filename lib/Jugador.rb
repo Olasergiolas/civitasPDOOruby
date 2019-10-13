@@ -196,14 +196,14 @@ module Civitas
     
     def puedoEdificarCasa(propiedad)
       puedo = false
-      if @nombre == propiedad.propietario.nombre && propiedad.numCasas < 4 && @saldo >= propiedad.precioEdificar
+      if @propiedad.esEsteElPropietario(self) && propiedad.numCasas < 4 && @saldo >= propiedad.precioEdificar
         puedo = true        
       end
     end
     
     def puedoEdificarHotel(propiedad)
       puedo = false
-      if @nombre == propiedad.propietario.nombre && propiedad.numHoteles < 4 && propiedad.numCasas == 4 && @saldo >= propiedad.precioEdificar
+      if @propiedad.esEsteElPropietario(self) && propiedad.numHoteles < 4 && propiedad.numCasas == 4 && @saldo >= propiedad.precioEdificar
         puedo = true
       end
     end

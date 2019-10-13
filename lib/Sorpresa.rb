@@ -182,7 +182,5 @@ module Civitas
         @mazo = 0
         @tablero = 0
       end
-      
-      
     end
 end

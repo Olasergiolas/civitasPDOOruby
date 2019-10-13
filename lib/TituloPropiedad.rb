@@ -18,10 +18,10 @@ module Civitas
       @numHoteles = 0
       @precioCompra = precioCom
       @precioEdificar = precioEd
-      @propietario
+      @propietario = nil
     end
     
-    attr_reader :hipotecado, :nombre, :numCasas, :numHoteles, :propietario
+    attr_reader :hipotecado, :nombre, :numCasas, :numHoteles, :propietario, :precioCompra, :precioEdificar
     
     def toString
       puts "#{@nombre}, #{@alquilerBase}, #{@factorRevalorizacion}, #{@hipotecaBase}, hipotecado: #{@hipotecado},
@@ -39,7 +39,7 @@ module Civitas
     end
     
     def acutalizaPropietarioPorConversion(jugador)
-      
+      @propietario = jugador
     end
     
     def cancelarHipoteca(jugador)
@@ -102,15 +102,7 @@ module Civitas
     end
     
     def getImporteCancelarHipoteca
-      cantidadRecibida = @hipotecaBase*(1+(@numCasas*0.5)+(@numHoteles*2.5))*@@factorInteresesHipoteca
-    end
-    
-    def getPrecioCompra
-      
-    end
-    
-    def getPrecioEdificar
-      
+      cantidadRecibida = getImporteHipoteca*@@factorInteresesHipoteca
     end
     
     def getPrecioVenta
@@ -129,7 +121,10 @@ module Civitas
     end
     
     def tienePropietario
-      
+      tiene = false
+      if @propietario != nil
+        tiene = true
+      end
     end
     
     def tramitarAlquiler(jugador)
@@ -140,14 +135,21 @@ module Civitas
     end
     
     def vender(jugador)
-      
+      resultado = false
+      if (esEsteElPropietario(jugador) && !@hipotecado)
+        jugador.recibe(getPrecioVenta)
+        @propietario = nil
+        @numCasas = 0
+        @numHoteles = 0
+        resultado = true
+      end
     end
     
     private
     
     def esEsteElPropietario(jugador)
       booleano = false
-      if (@propietario.compareTo(jugador))
+      if (@propietario.nombre == jugador.nombre)
         booleano = true
       end
       
@@ -155,7 +157,7 @@ module Civitas
     end
     
     def getImporteHipoteca
-      
+      importe = @hipotecaBase*(1+(@numCasas*0.5)+(@numHoteles*2.5))
     end
     
     def getPrecioAlquiler
