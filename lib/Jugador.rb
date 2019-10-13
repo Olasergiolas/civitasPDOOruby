@@ -2,8 +2,8 @@
 # To change this template file, choose Tools | Templates
 # and open the template in the editor.
 
-require './TituloPropiedad'
-require './Diario'
+require_relative 'TituloPropiedad'
+require_relative 'Diario'
 
 module Civitas
   class Jugador

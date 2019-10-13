@@ -4,7 +4,7 @@
 
 #encoding: UTF-8
 
-require './Diario'
+require_relative 'Diario'
 
 module Civitas
     class MazoSorpresas

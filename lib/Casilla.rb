@@ -4,8 +4,8 @@
 
 #encoding: UTF-8
 
-require './Jugador'
-require './TipoCasilla'
+require_relative 'Jugador'
+require_relative 'TipoCasilla'
 
 module Civitas  
     class Casilla

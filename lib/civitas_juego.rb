@@ -2,11 +2,11 @@
 # To change this template file, choose Tools | Templates
 # and open the template in the editor.
 
-require './gestor_estados'
-require './Jugador'
-require './Dado'
-require './MazoSorpresas'
-require './Tablero'
+require_relative 'gestor_estados'
+require_relative 'Jugador'
+require_relative 'Dado'
+require_relative 'MazoSorpresas'
+require_relative 'Tablero'
 
 module Civitas
     class CivitasJuego

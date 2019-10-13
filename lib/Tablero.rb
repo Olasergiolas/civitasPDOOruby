@@ -4,7 +4,7 @@
 
 #encoding: UTF-8
 
-require './Casilla'
+require_relative 'Casilla'
 
 module Civitas
     class Tablero

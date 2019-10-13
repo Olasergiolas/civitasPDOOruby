@@ -4,13 +4,13 @@
 
 # encoding: UTF-8
 
-require_relative './Dado'
-require_relative './MazoSorpresas'
-require_relative './Sorpresa'
-require_relative './Casilla'
-require_relative './Diario'
-require_relative './Jugador'
-require_relative './TipoSorpresa'
+require_relative 'Dado'
+require_relative 'MazoSorpresas'
+require_relative 'Sorpresa'
+require_relative 'Casilla'
+require_relative 'Diario'
+require_relative 'Jugador'
+require_relative 'TipoSorpresa'
 
 module Civitas
   class TestP1

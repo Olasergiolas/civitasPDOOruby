@@ -5,7 +5,7 @@
 #encoding: UTF-8
 
 require 'singleton'
-require './Diario'
+require_relative 'Diario'
 
 module Civitas
     class Dado

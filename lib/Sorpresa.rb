@@ -4,12 +4,12 @@
 
 #encoding: UTF-8
 
-require './Diario'
-require './TipoSorpresa'
-require './Jugador'
-require './Dado'
-require './Tablero'
-require './Casilla'
+require_relative 'Diario'
+require_relative 'TipoSorpresa'
+require_relative 'Jugador'
+require_relative 'Dado'
+require_relative 'Tablero'
+require_relative 'Casilla'
 
 module Civitas
     class Sorpresa
