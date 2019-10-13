@@ -4,28 +4,29 @@
 
 # encoding: UTF-8
 
-require './Dado'
-require './MazoSorpresas'
-require './Sorpresa'
-require './Casilla'
-require './Diario'
-require './Jugador'
-require './TipoSorpresa'
+require_relative './Dado'
+require_relative './MazoSorpresas'
+require_relative './Sorpresa'
+require_relative './Casilla'
+require_relative './Diario'
+require_relative './Jugador'
+require_relative './TipoSorpresa'
 
 module Civitas
   class TestP1
     
     def initialize
-      @D = Dado.instance         
+      @d = Dado.instance         
       @repeticiones = [0, 0, 0, 0]
       @mazo = MazoSorpresas.new
-      @Diario = Diario.instance
+      @diario = Diario.instance
+      @tablero = Tablero.new(5)
     end
 
     def main
       #Primer Apartado
       for a in 1..100 do
-        resultado = @D.quienEmpieza(4)
+        resultado = @d.quienEmpieza(4)
         @repeticiones[resultado] = @repeticiones[resultado] + 1
       end
 
@@ -33,29 +34,29 @@ module Civitas
       puts " "
 
       #Segundo Apartado:
-      @D.setDebug(true)
+      @d.setDebug(true)
       puts "Tiradas con Debug activado: "
       for a in 1..10 do
-        @D.tirar
-        puts @D.ultimoResultado
+        @d.tirar
+        puts @d.ultimoResultado
       end
 
-      @D.setDebug(false)
+      @d.setDebug(false)
       puts "Tiradas con Debug desactivado: "
       for a in 1..10 do
-        @D.tirar
-        puts @D.ultimoResultado
+        @d.tirar
+        puts @d.ultimoResultado
       end
 
 
       #Tercer Apartado
       puts "Test salgoDeLaCarcel: "
-      if (@D.salgoDeLaCarcel == true)
-        puts @D.ultimoResultado
+      if (@d.salgoDeLaCarcel == true)
+        puts @d.ultimoResultado
         puts "Salgo de la carcel"
 
       else
-        puts @D.ultimoResultado
+        puts @d.ultimoResultado
         puts "No salgo de la carcel"
       end
 
@@ -70,8 +71,8 @@ module Civitas
       @mazo.habilitarCartaEspecial(s2)
       
       #Sexto Apartado
-      puts @Diario.leer_evento
-      puts @Diario.eventos_pendientes
+      puts @diario.leer_evento
+      puts @diario.eventos_pendientes
     end
   end
   

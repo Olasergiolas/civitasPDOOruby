@@ -22,7 +22,7 @@ module Civitas
       end
       
       salida = Casilla.new('Salida')
-      casillas.push(salida)
+      @casillas.push(salida)
     end
     
     attr_reader :numCasillaCarcel
@@ -41,28 +41,28 @@ module Civitas
       carcel = Casilla.new("Cárcel")
       
       
-      if (casillas.length == numCasillaCarcel)
-        casillas.push(carcel)
+      if (@casillas.length == numCasillaCarcel)
+        @casillas.push(carcel)
       end
       
-      casillas.push(casilla)
+      @casillas.push(casilla)
       
-      while (casillas.length == numCasillaCarcel)
-        casillas.push(carcel)
+      while (@casillas.length == numCasillaCarcel)
+        @casillas.push(carcel)
       end
     end
     
     def añadeJuez
       casillajuez = Casilla.new("Juez")
       if @tieneJuez == false
-        casillas.push(casillajuez)
+        @casillas.push(casillajuez)
         @tieneJuez = true
       end
     end
     
     def getCasilla(n)
-      if n <= casillas.length
-        casillas[n]
+      if n <= @casillas.length
+        @casillas[n]
         
       else
         nil

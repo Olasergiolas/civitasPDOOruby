@@ -45,8 +45,9 @@ module Civitas
       
       @usadas += 1
       @ultimaSorpresa = @sorpresas[0]
+      @sorpresas.delete_at(0)
       @sorpresas << @ultimaSorpresa
-      @sorpresas.shift  
+      @ultimaSorpresa  
     end
     
     def inhabilitarCartaEspecial(sorpresa)
