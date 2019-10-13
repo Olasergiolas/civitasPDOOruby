@@ -14,28 +14,27 @@ require_relative 'Casilla'
 module Civitas
     class Sorpresa
       def initialize
-        @texto
-        @valor
-        @tipo
-        @mazo
-        @tablero
+        @texto = nil
+        @valor = 0
+        @tipo = nil
+        @mazo = nil
+        @tablero = nil
       end
       
       def self.new_tp_tb(tipo, tablero)
         init
-        @texto
-        @valor
+        @texto = nil
+        @valor = 0
         @tipo = tipo
-        @mazo
+        @mazo = nil
         @tablero = tablero
       end
       
       def self.new_tp_tb_v_tx(tipo, tablero, valor, texto)
         init
         @texto = texto
-        @valor
         @tipo = tipo
-        @mazo
+        @mazo = nil
         @tablero = tablero
         @valor = valor
       end
@@ -43,19 +42,19 @@ module Civitas
       def self.new_tp_tx(tipo, texto)
         init
         @texto = texto
-        @valor
+        @valor = 0
         @tipo = tipo
-        @mazo
-        @tablero
+        @mazo = nil
+        @tablero = nil
       end
       
       def self.new_tp_m(tipo, mazo)
         init
-        @texto
-        @valor
+        @texto = nil
+        @valor = 0
         @tipo = tipo
         @mazo = mazo
-        @tablero
+        @tablero = nil
       end
       
       def aplicarAJugador(actual, todos)

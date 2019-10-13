@@ -14,13 +14,13 @@ module Civitas
     @@precioLibertad = 200
     @@saldoInicial = 7500
     def initialize(nombre)
-      @encarcelado
+      @encarcelado = false
       @nombre = nombre
-      @numCasillaActual
-      @puedeComprar
-      @saldo
+      @numCasillaActual = 0
+      @puedeComprar = false
+      @saldo = 0
       @propiedades = Array.new
-      @salvoconducto
+      @salvoconducto = false
     end
    
     def self.newCopy(otro)

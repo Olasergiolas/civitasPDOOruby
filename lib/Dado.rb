@@ -11,11 +11,11 @@ module Civitas
     class Dado
     include Singleton
     
+      @@SalidaCarcel = 5
       def initializate
-        @random
-        @ultimoResultado
+        @random = 0
+        @ultimoResultado = 0
         @debug = false
-        @SalidaCarcel
       end
       
       def tirar

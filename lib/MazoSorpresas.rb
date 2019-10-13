@@ -12,10 +12,10 @@ module Civitas
     
     def initialize(d = false)
       @sorpresas = Array.new
-      @barajada
-      @usadas
+      @barajada = false
+      @usadas = 0
       @cartasEspeciales = Array.new
-      @ultimaSorpresa
+      @ultimaSorpresa = nil
       
       if (d == false || d == true)
         @debug = d

@@ -9,7 +9,7 @@ require_relative 'Casilla'
 module Civitas
     class Tablero
     def initialize(cas)
-      @numCasillaCarcel
+      @numCasillaCarcel = cas
       @porSalida = 0
       @tieneJuez = false
       @casillas = Array.new

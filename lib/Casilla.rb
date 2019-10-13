@@ -14,20 +14,20 @@ module Civitas
     def initialize(nombre)
       init
       @nombre = nombre
-      @importe
+      @importe = 0
       @tipo = TipoCasilla::DESCANSO
-      @mazo
-      @sorpresa
-      @tituloPropiedad
+      @mazo = nil
+      @sorpresa = nil
+      @tituloPropiedad = nil
     end 
     
     def self.new_t(titulo)
       init
       @nombre = titulo.nombre
-      @importe
+      @importe = 0
       @tipo = TipoCasilla::CALLE
-      @mazo
-      @sorpresa
+      @mazo = nil
+      @sorpresa = nil
       @tituloPropiedad = titulo
     end
     
@@ -36,30 +36,30 @@ module Civitas
       @nombre = nombre
       @importe = cantidad
       @tipo = TipoCasilla::IMPUESTO
-      @mazo
-      @sorpresa
-      @tituloPropiedad
+      @mazo = nil
+      @sorpresa = nil
+      @tituloPropiedad = nil
     end
     
     def self.new_num_n(numCasillaCarcel, nombre)
       init
       @@carcel = numCasillaCarcel
       @nombre = nombre
-      @importe
+      @importe = 0
       @tipo = TipoCasilla::JUEZ
-      @mazo
-      @sorpresa
-      @tituloPropiedad
+      @mazo = nil
+      @sorpresa = nil
+      @tituloPropiedad = nil
     end
     
     def self.new_m_n(mazo, nombre)
       init
       @nombre = nombre
-      @importe
+      @importe = 0
       @tipo = TipoCasilla::SORPRESA
       @mazo = mazo
-      @sorpresa
-      @tituloPropiedad
+      @sorpresa = nil
+      @tituloPropiedad = nil
     end
     
     def informe(iactual, todos)
