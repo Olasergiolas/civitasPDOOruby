@@ -61,8 +61,10 @@ module Civitas
       end
 
       #Quinto Apartado
-      s1 = Sorpresa.new
-      s2 = Sorpresa.new
+      s1 = Sorpresa.new_tp_tx(TipoSorpresa::IRCASILLA, 'Hola')
+      s2 = Sorpresa.new_tp_tx(TipoSorpresa::IRCASILLA, 'Hola')
+      c = Casilla.new_t(@titulo)
+      j1 = Jugador.new('SERGIO')
 
       @mazo.alMazo(s1)
       @mazo.alMazo(s2)
@@ -73,6 +75,9 @@ module Civitas
       #Sexto Apartado
       puts @diario.leer_evento
       puts @diario.eventos_pendientes
+      
+      #Pruebas
+      
     end
   end
   

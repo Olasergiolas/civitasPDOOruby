@@ -13,48 +13,29 @@ require_relative 'Casilla'
 
 module Civitas
     class Sorpresa
-      def initialize
-        @texto = nil
-        @valor = 0
-        @tipo = nil
-        @mazo = nil
-        @tablero = nil
+      def initialize(t, v, tip, m, tab)
+        init
+        @texto = t
+        @valor = v
+        @tipo = tip
+        @mazo = m
+        @tablero = tab
       end
       
       def self.new_tp_tb(tipo, tablero)
-        init
-        @texto = nil
-        @valor = 0
-        @tipo = tipo
-        @mazo = nil
-        @tablero = tablero
+        new(nil, 0, tipo, nil, tablero)
       end
       
       def self.new_tp_tb_v_tx(tipo, tablero, valor, texto)
-        init
-        @texto = texto
-        @tipo = tipo
-        @mazo = nil
-        @tablero = tablero
-        @valor = valor
+        new(texto, valor, tipo, nil, tablero)
       end
       
       def self.new_tp_tx(tipo, texto)
-        init
-        @texto = texto
-        @valor = 0
-        @tipo = tipo
-        @mazo = nil
-        @tablero = nil
+        new(texto, 0, tipo, nil, nil)
       end
       
       def self.new_tp_m(tipo, mazo)
-        init
-        @texto = nil
-        @valor = 0
-        @tipo = tipo
-        @mazo = mazo
-        @tablero = nil
+        new(nil, 0, tipo, mazo, nil)
       end
       
       def aplicarAJugador(actual, todos)
@@ -173,7 +154,7 @@ module Civitas
       end
       
       def informe(actual, todos)
-        Diario.instance.ocurre_evento('Aplicando sorpresa al jugador #{todos[actual].nombre}')
+        Diario.instance.ocurre_evento("Aplicando sorpresa al jugador #{todos[actual].nombre}")
       end
       
       def init
@@ -181,5 +162,7 @@ module Civitas
         @mazo = 0
         @tablero = 0
       end
+      
+      private_class_method :new
     end
 end

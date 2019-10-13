@@ -21,20 +21,19 @@ module Civitas
         @numCasillaCarcel = 1
       end
       
-      salida = Casilla.new('Salida')
+      salida = Casilla.new_c_n(0, "Salida")
       @casillas.push(salida)
     end
     
     attr_reader :numCasillaCarcel
     
     def getPorSalida
+      antes_decremento = @porSalida
       if @porSalida > 0
         @porSalida -= 1
-        @porSalida + 1              #Supongo que se hace así?
-        
-      else
-        @porSalida
       end
+      
+      return antes_decremento
     end
     
     def añadeCasilla(casilla)
