@@ -54,11 +54,11 @@ module Civitas
       end
       
       def getCasillaActual
-        
+        @tablero.getCasilla(getJugadorActual.numCasillaActual)
       end
       
       def getJugadorActual
-        
+        @jugadores[@indiceJugador]
       end
       
       def hipotecar(ip)
@@ -66,7 +66,7 @@ module Civitas
       end
       
       def infoJugadorTexto
-        
+        @jugadores[@indiceJugador].toString
       end
       
       def salirCarcelPagando

@@ -2,6 +2,9 @@
 # To change this template file, choose Tools | Templates
 # and open the template in the editor.
 
+require './TituloPropiedad'
+require './Diario'
+
 module Civitas
   class Jugador
     @@casasMax = 4
@@ -37,7 +40,12 @@ module Civitas
     end
     
     def cantidadCasasHoteles
+      suma = 0
+      for i in 1..@propiedades.size
+        suma = suma + @propiedades[i].cantidadCasasHoteles
+      end
       
+      return suma
     end
     
     def <=>(jugador)
@@ -71,7 +79,12 @@ module Civitas
     end
     
     def enBancarrota
+      broke = false
+      if @saldo < 0
+        broke = true
+      end
       
+      return broke
     end
     
     def encarcelar(numCasillaCarcel)
@@ -85,11 +98,16 @@ module Civitas
     end
     
     def existeLaPropiedad(ip)
+      existe = false
+      if @propiedades.fetch(ip, false)
+        existe = true
+      end
       
+      return existe
     end
     
     def getPremioPasoSalida
-      
+      @saldo = @saldo + 1000
     end
     
     def hipotecar(ip)
@@ -177,11 +195,17 @@ module Civitas
     end
     
     def puedoEdificarCasa(propiedad)
-      
+      puedo = false
+      if @nombre == propiedad.propietario.nombre && propiedad.numCasas < 4 && @saldo >= propiedad.precioEdificar
+        puedo = true        
+      end
     end
     
     def puedoEdificarHotel(propiedad)
-      
+      puedo = false
+      if @nombre == propiedad.propietario.nombre && propiedad.numHoteles < 4 && propiedad.numCasas == 4 && @saldo >= propiedad.precioEdificar
+        puedo = true
+      end
     end
     
     def puedoGastar(precio)
@@ -238,12 +262,11 @@ module Civitas
       if @salvoconducto != 0
         tiene = true
       end
-      
-      return tiene
     end
     
     def toString
-      
+      info = 'Jugador #{@nombre} en la casilla #{@numCasillaActual} con saldo #{@saldo}. ¿Salvoconducto? #{salvoconducto},
+              ¿Puede comprar? #{@puedeComprar}, ¿Encarcelado? #{@encarcelado}'
     end
     
     def vender(ip)
