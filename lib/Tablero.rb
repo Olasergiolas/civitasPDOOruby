@@ -37,7 +37,7 @@ module Civitas
     end
     
     def añadeCasilla(casilla)
-      carcel = Casilla.new("Cárcel")
+      carcel = Casilla.new("Carcel")
       
       
       if (@casillas.length == @numCasillaCarcel)
