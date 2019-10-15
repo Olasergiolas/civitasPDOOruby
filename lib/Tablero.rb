@@ -36,7 +36,7 @@ module Civitas
       return antes_decremento
     end
     
-    def añadeCasilla(casilla)
+    def aniadeCasilla(casilla)
       carcel = Casilla.new("Carcel")
       
       
@@ -51,7 +51,7 @@ module Civitas
       end
     end
     
-    def añadeJuez
+    def aniadeJuez
       casillajuez = Casilla.new("Juez")
       if @tieneJuez == false
         @casillas.push(casillajuez)
