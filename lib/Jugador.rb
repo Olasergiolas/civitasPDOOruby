@@ -41,7 +41,7 @@ module Civitas
     
     def cantidadCasasHoteles
       suma = 0
-      for i in 0..@propiedades.size
+      for i in 0..@propiedades.size-1
         suma = suma + @propiedades[i].cantidadCasasHoteles
       end
       
