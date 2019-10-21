@@ -11,9 +11,12 @@ require_relative 'Casilla'
 require_relative 'Diario'
 require_relative 'Jugador'
 require_relative 'TipoSorpresa'
+require_relative 'VistaTextual'
+require_relative 'civitas_juego'
+require_relative 'controlador'
 
 module Civitas
-  class TestP1
+  class JuegoTexto
     
     def initialize
       @d = Dado.instance         
@@ -81,7 +84,7 @@ module Civitas
     end
   end
   
-  personaje = TestP1.new
+  personaje = JuegoTexto.new
   personaje.main
     
 end
