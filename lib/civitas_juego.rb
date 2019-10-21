@@ -19,7 +19,7 @@ module Civitas
         end
         
         @mazo = MazoSorpresas.new
-        @tablero
+        @tablero = Tablero.new(5)
         @estado = @gestorEstados.estado_inicial
         @gestorEstados = Gestor_estados.new
         inicializarTablero(@mazo)
@@ -102,11 +102,25 @@ module Civitas
       end
       
       def inicialiarMazoSorpresas(tablero)
-        #No entiendo lo que tengo que hacer
+        
+        s1 = Sorpresa.new_tp_tb(TipoSorpresa::IRCARCEL, tablero)
+        s2 = Sorpresa.new_tp_m(TipoSorpresa::SALIRCARCEL, @mazo)
+        s3 = Sorpresa.new_tp_tx(TipoSorpresa::PORCASAHOTEL, "A pagar todos")
+        
+        @mazo.alMazo(s1)
+        @mazo.alMazo(s2)
+        @mazo.alMazo(s3)
       end
       
       def inicializarTablero(mazo)
-        #No entiendo lo que tengo que hacer
+        
+        c1 = Casilla.new_num_n(@tablero.numCasillaCarcel, "Carcel")
+        c2 = Casilla.new_m_n(mazo, "Bowsy")
+        c3 = Casilla.new_c_n(1000, "Hacienda")
+        
+        @tablero.aniadeCasilla(c1)
+        @tablero.aniadeCasilla(c2)
+        @tablero.aniadeCasilla(c3)
       end
       
       def pasarTurno
