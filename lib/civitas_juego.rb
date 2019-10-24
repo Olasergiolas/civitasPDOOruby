@@ -7,6 +7,7 @@ require_relative 'Jugador'
 require_relative 'Dado'
 require_relative 'MazoSorpresas'
 require_relative 'Tablero'
+require_relative 'OperacionesJuego'
 
 module Civitas
     class CivitasJuego

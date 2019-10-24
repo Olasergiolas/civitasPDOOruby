@@ -1,5 +1,5 @@
 require_relative 'diario'
-require_relative 'operaciones_juego'
+require_relative 'OperacionesJuego'
 
 module Civitas
   class Gestor_estados

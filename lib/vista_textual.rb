@@ -1,5 +1,4 @@
 #encoding:utf-8
-require_relative 'operaciones_juego'
 require_relative 'respuestas'
 require_relative 'SalidasCarcel'
 require_relative 'OperacionesJuego'

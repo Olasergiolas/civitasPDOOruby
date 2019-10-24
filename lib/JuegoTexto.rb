@@ -11,7 +11,7 @@ require_relative 'Casilla'
 require_relative 'Diario'
 require_relative 'Jugador'
 require_relative 'TipoSorpresa'
-require_relative 'VistaTextual'
+require_relative 'vista_textual'
 require_relative 'civitas_juego'
 require_relative 'controlador'
 
