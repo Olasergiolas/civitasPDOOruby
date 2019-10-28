@@ -13,30 +13,33 @@ module Civitas
     @@pasoPorSalida = 1000
     @@precioLibertad = 200
     @@saldoInicial = 7500
-    def initialize(nombre)
-      @encarcelado = false
+    def initialize(encarcelado, nombre, numCasillaActual, puedeComprar, saldo, propiedades, salvoconducto)
+      @encarcelado = encarcelado
       @nombre = nombre
-      @numCasillaActual = 0
-      @puedeComprar = false
-      @saldo = 0
-      @propiedades = Array.new
-      @salvoconducto = false
+      @numCasillaActual = numCasillaActual
+      @puedeComprar = puedeComprar
+      @saldo = saldo
+      @propiedades = propiedades
+      @salvoconducto = salvoconducto
+    end
+    
+    def self.new_1(nombre)
+      new(false, nombre, 0, false, 0, Array.new, false)
     end
    
-    def self.newCopy(otro)                                #Arreglar
-      copia = new(otro.nombre)
-      copia.encarcelado = otro.encarcelado
-      copia.numCasillaActual = otro.numCasillaActual
-      copia.puedeComprar = otro.puedeComprar
-      copia.saldo = otro.saldo
-      propiedades = otro.propiedades
+    def self.newCopy(otro)    #arreglar                     
+      new(otro.encarcelado, otro.nombre, otro.numCasillaActual, otro.puedeComprar, otro.saldo, otro.propiedades, otro.salvoconducto)
     end
     
     attr_reader :hotelesMax, :casasMax, :casasPorHotel, :encarcelado, :nombre, :numCasillaActual, :precioLibertad, :saldo, :encarcelado, :puedeComprar, :propiedades
     attr_writer :saldo, :numCasillaActual
     
     def cancelarHipoteca(ip)
-      
+      retorno = false
+      if (@encarcelado && existeLaPropiedad(ip) && puedoGastar(@propiedades[ip].getImporteCancelarHipoteca))
+        retorno = @propiedades[i].cancelarHipoteca(self)
+        Diario.instance.ocurre_evento("El jugador " + @nombre + " cancela la hipoteca de la propiedad " + ip)
+      end
     end
     
     def cantidadCasasHoteles
@@ -53,7 +56,13 @@ module Civitas
     end
     
     def comprar(titulo)
-      
+      retorno = false
+      if (@encarcelado && @puedeComprar && puedeGastar(titulo.precioCompra))
+        @propiedades << titulo
+        Diario.instance.ocurre_evento("El jugador "+jugador+" compra la propiedad "+titulo.nombre)
+        @puedeComprar = false
+        retorno = titulo.comprar(self)
+      end
     end
     
     def construirCasa(ip)

@@ -84,9 +84,9 @@ module Civitas
     end
     
     def init
-      @mazo                                           #Qué entendemos por un valor adecuado???????
-      @sorpresa
-      @tituloPropiedad
+      @mazo = nil                            
+      @sorpresa = nil
+      @tituloPropiedad = nil
       @importe = 0
     end
     

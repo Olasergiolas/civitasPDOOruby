@@ -43,15 +43,12 @@ module Civitas
     end
     
     def cancelarHipoteca(jugador)
+      retorno = false
       if (@hipotecado && esEsteElPropietario(jugador))
         jugador.paga(getImporteCancelarHipoteca())
-        @hipotecado = false;
-        return true
-        
-      else
-        return false
-        
-      end 
+        @hipotecado = false
+        retorno = true
+      end
     end
     
     def cantidadCasasHoteles
@@ -65,8 +62,6 @@ module Civitas
         jugador.paga(getPrecioCompra)
         booleano = true
       end
-      
-      return booleano
     end
     
     def construirCasa(jugador)

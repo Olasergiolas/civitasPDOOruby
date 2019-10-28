@@ -13,7 +13,7 @@ module Civitas
     class CivitasJuego
       
       def initialize(nombres)
-        @indiceJugador = Dado.instance.quienEmpieza(@jugadores.size)
+        @indiceJugadorActual = Dado.instance.quienEmpieza(@jugadores.size)
         @jugadores = Array.new
         for i in 1..nombres.size
           jugadores.push(Jugador.new(nombres[i]))
@@ -28,7 +28,7 @@ module Civitas
       end
       
       def cancelarHipoteca(ip)
-        @jugadores[@indiceJugador].cancelarHipoteca(ip)
+        @jugadores[@indiceJugadorActual].cancelarHipoteca(ip)
       end
       
       def comprar
@@ -36,11 +36,11 @@ module Civitas
       end
       
       def construirCasa(ip)
-        @jugadores[@indiceJugador].construirCasa(ip)
+        @jugadores[@indiceJugadorActual].construirCasa(ip)
       end
       
       def construirHotel(ip)
-        @jugadores[@indiceJugador].construirHotel(ip)
+        @jugadores[@indiceJugadorActual].construirHotel(ip)
       end
       
       def finalDelJuego
@@ -59,23 +59,23 @@ module Civitas
       end
       
       def getJugadorActual
-        @jugadores[@indiceJugador]
+        @jugadores[@indiceJugadorActual]
       end
       
       def hipotecar(ip)
-        @jugadores[@indiceJugador].hipotecar(ip)
+        @jugadores[@indiceJugadorActual].hipotecar(ip)
       end
       
       def infoJugadorTexto
-        @jugadores[@indiceJugador].toString
+        @jugadores[@indiceJugadorActual].toString
       end
       
       def salirCarcelPagando
-        @jugadores[@indiceJugador].salirCarcelPagando(ip)
+        @jugadores[@indiceJugadorActual].salirCarcelPagando(ip)
       end
       
       def salirCarcelTirando
-        @jugadores[@indiceJugador].salirCarcelTirando(ip)
+        @jugadores[@indiceJugadorActual].salirCarcelTirando(ip)
       end
       
       def siguientePaso
@@ -83,18 +83,23 @@ module Civitas
       end
       
       def siguientePasoCompletado(operacion)
-        @estado = @gestorEstados.siguiente_estado(@jugadores[@indiceJugador], estado, operacion)      #Qué estado entra aquí?
+        @estado = @gestorEstados.siguiente_estado(@jugadores[@indiceJugadorActual], @estado, operacion)
       end
       
       def vender(ip)
-        @jugadores[@indiceJugador].vender(ip)
+        @jugadores[@indiceJugadorActual].vender(ip)
       end
       
       private
       
       def avanzaJugador
-        
-      end
+          jugadorActual = @jugadores[@indiceJugadorActual]
+          posicionNueva = @tablero.nuevaPosicion(jugadorActual.numCasillaActual, Dado.instance.tirar)
+          contabilizarPasosPorSalida(jugadorActual)
+          jugadorActual.moverACasilla(posicionNueva)
+          @tablero.getCasilla(posicionNueva).recibeJugador(@indiceJugadorActual, @jugadores)
+          contabilizarPasosPorSalida(jugadorActual)
+      end 
       
       def contabilizarPasosPorSalida(jugadorActual)
         while @tablero.getPorSalida > 0
@@ -125,11 +130,11 @@ module Civitas
       end
       
       def pasarTurno
-        if @indiceJugador < @jugadores.size - 1               #Ya que el índice empieza desde 0
-          @indiceJugador = @indiceJugador + 1
+        if @indiceJugadorActual < @jugadores.size - 1               #Ya que el índice empieza desde 0
+          @indiceJugadorActual += 1
         
         else
-          @indiceJugador = 0
+          @indiceJugadorActual = 0
         end
       end
       

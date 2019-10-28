@@ -17,67 +17,65 @@ require_relative 'controlador'
 
 module Civitas
   class JuegoTexto
-    
-    def initialize
-      @d = Dado.instance         
-      @repeticiones = [0, 0, 0, 0]
-      @mazo = MazoSorpresas.new
-      @diario = Diario.instance
-      @tablero = Tablero.new(5)
-    end
-
     def main
+      d = Dado.instance         
+      repeticiones = [0, 0, 0, 0]
+      mazo = MazoSorpresas.new
+      diario = Diario.instance
+      tablero = Tablero.new(5)
+      titulo = TituloPropiedad.new(0,0,0,0,0,0)
+      
       #Primer Apartado
       for a in 1..100 do
-        resultado = @d.quienEmpieza(4)
-        @repeticiones[resultado] = @repeticiones[resultado] + 1
+        resultado = d.quienEmpieza(4)
+        repeticiones[resultado] = repeticiones[resultado] + 1
       end
 
-      print @repeticiones
+      print repeticiones
       puts " "
 
       #Segundo Apartado:
-      @d.setDebug(true)
+      d.setDebug(true)
       puts "Tiradas con Debug activado: "
       for a in 1..10 do
-        @d.tirar
-        puts @d.ultimoResultado
+        d.tirar
+        puts d.ultimoResultado
       end
 
-      @d.setDebug(false)
+      d.setDebug(false)
       puts "Tiradas con Debug desactivado: "
       for a in 1..10 do
-        @d.tirar
-        puts @d.ultimoResultado
+        d.tirar
+        puts d.ultimoResultado
       end
 
 
       #Tercer Apartado
       puts "Test salgoDeLaCarcel: "
-      if (@d.salgoDeLaCarcel == true)
-        puts @d.ultimoResultado
+      if (d.salgoDeLaCarcel == true)
+        puts d.ultimoResultado
         puts "Salgo de la carcel"
 
       else
-        puts @d.ultimoResultado
+        puts d.ultimoResultado
         puts "No salgo de la carcel"
       end
 
       #Quinto Apartado
       s1 = Sorpresa.new_tp_tx(TipoSorpresa::IRCASILLA, 'Hola')
       s2 = Sorpresa.new_tp_tx(TipoSorpresa::IRCASILLA, 'Hola')
-      c = Casilla.new_t(@titulo)
-      j1 = Jugador.new('SERGIO')
+      c = Casilla.new_t(titulo)
+      j1 = Jugador.new_1('SERGIO')
 
-      @mazo.alMazo(s1)
-      @mazo.alMazo(s2)
-      @mazo.siguiente
-      @mazo.inhabilitarCartaEspecial(s2)
-      @mazo.habilitarCartaEspecial(s2)
+      mazo.alMazo(s1)
+      mazo.alMazo(s2)
+      mazo.siguiente
+      mazo.inhabilitarCartaEspecial(s2)
+      mazo.habilitarCartaEspecial(s2)
       
       #Sexto Apartado
-      puts @diario.leer_evento
-      puts @diario.eventos_pendientes
+      puts diario.leer_evento
+      puts diario.eventos_pendientes
       
       #Pruebas
       
