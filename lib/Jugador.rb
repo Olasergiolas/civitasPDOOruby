@@ -116,7 +116,7 @@ module Civitas
     end
     
     def getPremioPasoSalida
-      @saldo = @saldo + 1000
+      @saldo = @saldo + @@pasoPorSalida
     end
     
     def hipotecar(ip)
@@ -176,7 +176,7 @@ module Civitas
     end
     
     def pasaPorSalida
-      modificarSaldo(1000)
+      modificarSaldo(@@pasoPorSalida)
       Diario.instance.ocurre_evento("El jugador #{@nombre} ha pasado por la salida")
       return true
     end
@@ -198,7 +198,7 @@ module Civitas
     def puedeSalirCarcelPagando
       puede = false
       
-      if @saldo >= 200
+      if @saldo >= @@precioLibertad
         puede = true
       end
     end
@@ -240,7 +240,7 @@ module Civitas
       resultado = false
       
       if @encarcelado && puedeSalirCarcelPagando
-        paga(200)
+        paga(@@precioLibertad)
         @encarcelado = false
         Diario.instance.ocurre_evento("El jugador #{@nombre} paga para salir de la carcel")
         resultado = true

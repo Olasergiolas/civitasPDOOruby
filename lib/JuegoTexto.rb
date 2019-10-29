@@ -17,7 +17,7 @@ require_relative 'controlador'
 
 module Civitas
   class JuegoTexto
-    def main
+    def self.main
       d = Dado.instance         
       repeticiones = [0, 0, 0, 0]
       mazo = MazoSorpresas.new
@@ -82,7 +82,6 @@ module Civitas
     end
   end
   
-  personaje = JuegoTexto.new
-  personaje.main
+  JuegoTexto.main
     
 end
