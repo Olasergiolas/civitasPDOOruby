@@ -36,7 +36,7 @@ module Civitas
     
     def cancelarHipoteca(ip)
       retorno = false
-      if (@encarcelado && existeLaPropiedad(ip) && puedoGastar(@propiedades[ip].getImporteCancelarHipoteca))
+      if (existeLaPropiedad(ip) && puedoGastar(@propiedades[ip].getImporteCancelarHipoteca))
         retorno = @propiedades[i].cancelarHipoteca(self)
         Diario.instance.ocurre_evento("El jugador " + @nombre + " cancela la hipoteca de la propiedad " + ip)
       end
@@ -57,9 +57,9 @@ module Civitas
     
     def comprar(titulo)
       retorno = false
-      if (@encarcelado && @puedeComprar && puedeGastar(titulo.precioCompra))
+      if (@puedeComprar && puedoGastar(titulo.precioCompra))
         @propiedades << titulo
-        Diario.instance.ocurre_evento("El jugador "+jugador+" compra la propiedad "+titulo.nombre)
+        Diario.instance.ocurre_evento("El jugador "+@nombre+" compra la propiedad "+titulo.nombre)
         @puedeComprar = false
         retorno = titulo.comprar(self)
       end
@@ -70,7 +70,13 @@ module Civitas
     end
     
     def construirHotel(ip)
-      
+      retorno = false
+      propiedad = @propiedades[ip]
+      if (existeLaPropiedad(ip) && puedoEdificarHotel(propiedad))
+        propiedad.derruirCasa(@@casasPorHotel, self)
+        Diario.instance.ocurre_evento("El jugador "+@nombre+" construye hotel en la propiedad "+ip)
+        retorno = propiedad.construirHotel(self)
+      end
     end
     
     def debeSerEncarcelado
@@ -198,21 +204,21 @@ module Civitas
     def puedeSalirCarcelPagando
       puede = false
       
-      if @saldo >= @@precioLibertad
+      if puedoGastar(@@precioLibertad)
         puede = true
       end
     end
     
     def puedoEdificarCasa(propiedad)
       puedo = false
-      if @propiedad.esEsteElPropietario(self) && propiedad.numCasas < 4 && @saldo >= propiedad.precioEdificar
+      if @propiedad.esEsteElPropietario(self) && propiedad.numCasas < @@casasMax && puedoGastar(propiedad.precioEdificar)
         puedo = true        
       end
     end
     
     def puedoEdificarHotel(propiedad)
       puedo = false
-      if @propiedad.esEsteElPropietario(self) && propiedad.numHoteles < 4 && propiedad.numCasas == 4 && @saldo >= propiedad.precioEdificar
+      if @propiedad.esEsteElPropietario(self) && propiedad.numHoteles < @@hotelesMax && propiedad.numCasas >= @@casasPorHotel && puedoGastar(propiedad.precioEdificar)
         puedo = true
       end
     end
