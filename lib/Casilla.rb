@@ -54,29 +54,40 @@ module Civitas
     end
     
     def recibeJugador(iactual, todos)
-      
+      correcto = jugadorCorrecto(iactual, todos)
+      if (correcto)
+        informe(iactual, todos)
+      end
+      if (@tipo == TipoCasilla::CALLE && correcto)
+        recibeJugador_calle(iactual,todos)
+      elsif (@tipo == TipoCasilla::IMPUESTO && correcto)
+        recibeJugador_impuesto(iactual,todos)
+      elsif (@tipo == TipoCasilla::JUEZ && correcto)
+        recibeJugador_juez(iactual,todos)
+      elsif(@tipo == TipoCasilla::SORPRESA && correcto)
+        recibeJugador_sorpresa(iactual,todos)
+      end
     end
     
     def recibeJugador_calle(iactual, todos)
-      
+      jugador = todos[iactual]
+      if (!@tituloPropiedad.tienePropietario)
+        jugador.puedeComprarCasilla
+      else
+        @tituloPropiedad.tramitarAlquiler(jugador)
+      end
     end
     
     def recibeJugador_impuesto(iactual, todos)
-      if jugadorCorrecto
-        informe(iactual, todos)
-        todos[iactual].pagaImpuesto(@importe)
-      end
+      todos[iactual].pagaImpuesto(@importe)
     end
     
     def recibeJugador_juez(iactual, todos)
-      if jugadorCorrecto
-        informe(iactual, todos)
-        todos[iactual].encarcelar(@@carcel)
-      end
+      todos[iactual].encarcelar(@@carcel)
     end
     
     def recibeJugador_sorpresa(iactual, todos)
-      
+      @mazo.siguiente.aplicarAJugador(iactual, todos)
     end
     
     def toString

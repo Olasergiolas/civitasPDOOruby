@@ -71,8 +71,6 @@ module Civitas
         @numCasas = @numCasas + 1
         booleano = true
       end
-      
-      return booleano
     end
     
     def construirHotel(jugador)
@@ -82,17 +80,13 @@ module Civitas
         @numHoteles = @numHoteles + 1
         booleano = true
       end
-      
-      return booleano
     end
     
     def derruirCasas(n, jugador)
+      result = false
       if (esEsteElPropietario(jugador) && @numCasas >= n)
         @numCasas = @numCasas - n
-        return true
-        
-      else
-        return false
+        result = true
       end
     end
     
@@ -105,13 +99,11 @@ module Civitas
     end
     
     def hipotecar(jugador)
+      result = false
       if (!@hipotecado && esEsteElPropietario(jugador))
         jugador.recibe(getImporteHipoteca)
         @hipotecado = true
-        return true
-        
-      else
-        return false
+        result = true
       end
     end
     
@@ -147,8 +139,6 @@ module Civitas
       if (@propietario.nombre == jugador.nombre)
         booleano = true
       end
-      
-      return booleano
     end
     
     def getImporteHipoteca

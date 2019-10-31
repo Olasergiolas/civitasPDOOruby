@@ -32,7 +32,10 @@ module Civitas
       end
       
       def comprar
-        
+        jugador = @jugadores[@indiceJugadorActual]
+        numCasillaActual = jugador.numCasillaActual
+        titulo = @tablero.getCasilla(numCasillaActual).tituloPropiedad
+        jugador.comprar(titulo)
       end
       
       def construirCasa(ip)
@@ -79,7 +82,16 @@ module Civitas
       end
       
       def siguientePaso
-        
+        jugador = @jugadores[@indiceJugadorActual]
+        operacion = @gestor_estados.operacionesPermitidas(jugador,@estado)
+        if (operacion == OperacionesJuego::PASAR_TURNO)
+          pasarTurno
+          siguientePasoCompletado(operacion)
+        elsif (operacion == OperacionesJuego::AVANZAR)
+          avanzaJugador
+          siguientePasoCompletado(operacion)
+        end
+        return operacion
       end
       
       def siguientePasoCompletado(operacion)

@@ -35,9 +35,9 @@ module Civitas
     attr_writer :saldo, :numCasillaActual
     
     def cancelarHipoteca(ip)
-      retorno = false
+      result = false
       if (existeLaPropiedad(ip) && puedoGastar(@propiedades[ip].getImporteCancelarHipoteca))
-        retorno = @propiedades[i].cancelarHipoteca(self)
+        result = @propiedades[i].cancelarHipoteca(self)
         Diario.instance.ocurre_evento("El jugador " + @nombre + " cancela la hipoteca de la propiedad " + ip)
       end
     end
@@ -52,30 +52,34 @@ module Civitas
     end
     
     def <=>(jugador)
-      saldo <=> jugador.saldo
+      @saldo <=> jugador.saldo
     end
     
     def comprar(titulo)
-      retorno = false
+      result = false
       if (@puedeComprar && puedoGastar(titulo.precioCompra))
         @propiedades << titulo
         Diario.instance.ocurre_evento("El jugador "+@nombre+" compra la propiedad "+titulo.nombre)
         @puedeComprar = false
-        retorno = titulo.comprar(self)
+        result = titulo.comprar(self)
       end
     end
     
     def construirCasa(ip)
-      
+      result = false
+      propiedad = @propiedades[ip]
+      if (existeLaPropiedad(ip) && puedoEdificarCasa(propiedad))
+        result = propiedad.construirCasa(self)
+      end
     end
     
     def construirHotel(ip)
-      retorno = false
+      result = false
       propiedad = @propiedades[ip]
       if (existeLaPropiedad(ip) && puedoEdificarHotel(propiedad))
         propiedad.derruirCasa(@@casasPorHotel, self)
         Diario.instance.ocurre_evento("El jugador "+@nombre+" construye hotel en la propiedad "+ip)
-        retorno = propiedad.construirHotel(self)
+        result = propiedad.construirHotel(self)
       end
     end
     
@@ -126,7 +130,12 @@ module Civitas
     end
     
     def hipotecar(ip)
-      
+      result = false
+      if (!@encarcelado && existeLaPropiedad(ip))
+        @propiedades[ip].hipotecar(self)
+        Diario.instance.ocurre_evento("El jugador "+@nombre+" hipoteca la propiedad "+ip)
+        result = true
+      end
     end
     
     def modificarSaldo(cantidad)
@@ -226,7 +235,7 @@ module Civitas
     def puedoGastar(precio)
       puedo = false
       
-      if !@encarcelado && (saldo >= precio)
+      if !@encarcelado && (@saldo >= precio)
         puedo = true
       end
       

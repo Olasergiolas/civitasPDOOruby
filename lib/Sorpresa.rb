@@ -39,22 +39,26 @@ module Civitas
       end
       
       def aplicarAJugador(actual, todos)
-        if @tipo == TipoSorpresa::IRCASILLA
+        correcto = jugadorCorrecto(actual, todos)
+        if (correcto)
+          informe(actual, todos)
+        end
+        if @tipo == TipoSorpresa::IRCASILLA && correcto
           aplicarAJugador_irACasilla(actual, todos)
           
-        elsif @tipo == TipoSorpresa::IRCARCEL
+        elsif @tipo == TipoSorpresa::IRCARCEL && correcto
           aplicarAJugador_irCarcel(actual, todos)  
           
-        elsif @tipo == TipoSorpresa::PAGARCOBRAR
+        elsif @tipo == TipoSorpresa::PAGARCOBRAR && correcto
           aplicarAJugador_pagarCobrar(actual, todos)  
           
-        elsif @tipo == TipoSorpresa::SALIRCARCEL
+        elsif @tipo == TipoSorpresa::SALIRCARCEL && correcto
           aplicarAJugador_salirCarcel(actual, todos)  
           
-        elsif @tipo == TipoSorpresa::PORCASAHOTEL
+        elsif @tipo == TipoSorpresa::PORCASAHOTEL && correcto
           aplicarAJugador_porCasaHotel(actual, todos)  
           
-        else @tipo == TipoSorpresa::PORJUGADOR
+        else @tipo == TipoSorpresa::PORJUGADOR && correcto
           aplicarAJugador_porJugador(actual, todos)  
         end
       end
@@ -87,69 +91,50 @@ module Civitas
       private
       
       def aplicarAJugador_irACasilla(actual, todos)
-        if jugadorCorrecto(actual, todos)
-          informe(actual, todos)
-          casillajug = todos[actual].numCasillaActual
-          tirada = @tablero.calcularTirada(casillajug, @valor)
-          npos = todos[actual].nuevaPosicion(casillajug, tirada)
-          todos[actual].moverACasilla(npos)
-          @tablero.getCasilla(@valor).recibeJugador(actual, todos)
-        end
+        casillajug = todos[actual].numCasillaActual
+        tirada = @tablero.calcularTirada(casillajug, @valor)
+        npos = todos[actual].nuevaPosicion(casillajug, tirada)
+        todos[actual].moverACasilla(npos)
+        @tablero.getCasilla(@valor).recibeJugador(actual, todos)
       end
       
       def aplicarAJugador_irCarcel(actual, todos)
-        if jugadorCorrecto(actual, todos)
-          informe(actual, todos)
-          jugador.encarcelar(@tablero.numCasillaCarcel)
-        end
+        jugador.encarcelar(@tablero.numCasillaCarcel)
       end
       
       def aplicarAJugador_pagarCobrar(actual, todos)
-        if jugadorCorrecto(actual, todos)
-          informe(actual, todos)
-          todos[actual].modificarSaldo(@valor)
-        end
+        todos[actual].modificarSaldo(@valor)
       end
       
       def aplicarAJugador_porCasaHotel(actual, todos)
-        if jugadorCorrecto(actual, todos)
-          informe(actual, todos)
-          todos[actual].modificarSaldo(@valor * (todos[actual].propiedades.size))
-        end
+        todos[actual].modificarSaldo(@valor * (todos[actual].propiedades.size))
       end
       
       def aplicarAJugador_porJugador(actual, todos)
-        if jugadorCorrecto(actual, todos)
-          informe(actual, todos)
-          cobrar = Sorpresa.new_tp_tx(TipoSorpresa::PAGARCOBRAR, "Recibe dinero")
-          pagar = Sorpresa.new_tp_tx(TipoSorpresa::PAGARCOBRAR, "Todos a pagarle")           #¿Cómo le modifico el valor?
-          
-          for i in 1..todos.size
-            if (i != actual)
-              pagar.aplicarAJugador(i, todos)
-              
-            else
-              cobrar.aplicarAJugador(i, todos)
-            end
+        cobrar = Sorpresa.new_tp_tx(TipoSorpresa::PAGARCOBRAR, "Recibe dinero")
+        pagar = Sorpresa.new_tp_tx(TipoSorpresa::PAGARCOBRAR, "Todos a pagarle")           #¿Cómo le modifico el valor?
+
+        for i in 1..todos.size
+          if (i != actual)
+            pagar.aplicarAJugador(i, todos)
+
+          else
+            cobrar.aplicarAJugador(i, todos)
           end
         end
       end
       
       def aplicarAJugador_salirCarcel(actual, todos)
-        if jugadorCorrecto(actual, todos)
-          informe(actual, todos)
-          
-          loTienen = false
-          for i in 1..todos.size                              #Debería usar un break?
-            if todos[i].tieneSalvoconducto
-              loTienen = true
-            end
+        loTienen = false
+        for i in 1..todos.size                              #Debería usar un break?
+          if todos[i].tieneSalvoconducto
+            loTienen = true
           end
-          
-          if !loTienen
-            todos[actual].obtenerSalvoconducto(self)
-            salirDelMazo
-          end
+        end
+
+        if !loTienen
+          todos[actual].obtenerSalvoconducto(self)
+          salirDelMazo
         end
       end
       
