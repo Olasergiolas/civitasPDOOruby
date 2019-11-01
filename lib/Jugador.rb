@@ -290,7 +290,7 @@ module Civitas
     
     def toString
       info = "Jugador #{@nombre} en la casilla #{@numCasillaActual} con saldo #{@saldo}. Salvoconducto? #{salvoconducto},
-              Puede comprar? #{@puedeComprar}, Encarcelado? #{@encarcelado}"
+              Puede comprar? #{@puedeComprar}, Encarcelado? #{@encarcelado}\n"
     end
     
     def vender(ip)

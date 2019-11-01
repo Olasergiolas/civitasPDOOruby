@@ -91,7 +91,7 @@ module Civitas
     end
     
     def toString
-      info = "Casilla #{@nombre} con importe #{@importe}, de tipo #{@tipo}, con un TituloPropiedad de nombre"
+      info = "Casilla #{@nombre} con importe #{@importe}, de tipo #{@tipo}, con un TituloPropiedad de nombre\n"
     end
     
     def init

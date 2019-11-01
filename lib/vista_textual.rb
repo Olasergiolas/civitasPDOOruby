@@ -15,6 +15,8 @@ module Civitas
       @iPropiedad
       @iGestion
     end
+    
+    attr_reader :iGestion, :iPropiedad
 
     def mostrar_estado(estado)
       puts estado
@@ -70,21 +72,22 @@ module Civitas
 
     
     def comprar
+      menu("¿Deseas comprar la calle?", lista_Respuestas)
     end
 
     def gestionar
-    end
-
-    def getGestion
-    end
-
-    def getPropiedad
+      @iGestion = menu("¿Qué gestión inmobiliaria se va a realizar?", lista_Gestiones)
+      @iPropiedad = menu("Elige la propiedad.", @juegoModel.getJugadorActual.propiedades) #Supongo que es así pero no estoy seguro
     end
 
     def mostrarSiguienteOperacion(operacion)
+      puts operacion
     end
 
     def mostrarEventos
+      while (Diario.instance.eventos_pendientes)
+        puts Diario.instance.leer_evento
+      end
     end
 
     def setCivitasJuego(civitas)
@@ -93,9 +96,13 @@ module Civitas
     end
 
     def actualizarVista
+      puts @juegoModel.getJugadorActual.toString
+      puts @juegoModel.getCasillaActual.toString
     end
-
     
+    def salirCarcel
+      menu("¿De qué forma se va a salir de la cárcel?", lista_Salidas)
+    end
   end
 
 end

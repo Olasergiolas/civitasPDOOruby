@@ -15,7 +15,7 @@ module Civitas
       def initialize(nombres)
         @indiceJugadorActual = Dado.instance.quienEmpieza(@jugadores.size)
         @jugadores = Array.new
-        for i in 1..nombres.size
+        for i in 0..nombres.size-1
           jugadores.push(Jugador.new(nombres[i]))
         end
         

@@ -25,7 +25,7 @@ module Civitas
     
     def toString
       puts "#{@nombre}, #{@alquilerBase}, #{@factorRevalorizacion}, #{@hipotecaBase}, hipotecado: #{@hipotecado},
-        #{@nombre}, #{@numCasas}, #{@numHoteles}, #{@precioCompra}, #{@precioEdificar}, #{@propietario}"
+        #{@nombre}, #{@numCasas}, #{@numHoteles}, #{@precioCompra}, #{@precioEdificar}, #{@propietario}\n"
     end
     
     def propietarioEncarcelado
