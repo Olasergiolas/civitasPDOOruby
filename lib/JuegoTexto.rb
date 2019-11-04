@@ -11,14 +11,14 @@ require_relative 'vista_textual'
 require_relative 'civitas_juego'
 require_relative 'controlador'
 
-module Civitas
+module JuegoTexto
   class JuegoTexto
     def self.main
       vista = Vista_textual.new
-      juego = CivitasJuego.new(["Paloma", "Búho", "Ganso", "Pato"])
-      Dado.instance.setDebug(true)
-      controlador = Controlador.new
-      Controlador.juega
+      juego = Civitas::CivitasJuego.new(["Paloma", "Búho", "Ganso", "Pato"])
+      Civitas::Dado.instance.setDebug(true)
+      controlador = Controlador.new(juego, vista)
+      controlador.juega
     end
   end
   

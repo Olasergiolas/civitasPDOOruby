@@ -2,8 +2,9 @@
 # To change this template file, choose Tools | Templates
 # and open the template in the editor.
 
-module Civitas
+module JuegoTexto
     class Controlador
+      include Civitas
       def initialize(juego, vista)
         @juego = juego
         @vista = vista
@@ -15,15 +16,15 @@ module Civitas
           @vista.actualizarVista
           @vista.pausa
           operacion = @vista.mostrarSiguienteOperacion(@juego.siguientePaso)
-          if (operacion != OperacionesJuego::PASAR_TURNO)
+          if (operacion != Operaciones_juego::PASAR_TURNO)
             @vista.mostrarEventos
           end
           final = @juego.finalDelJuego
-          if (!final && operacion == OperacionesJuego::COMPRAR && @vista.comprar == 0)
+          if (!final && operacion == Operaciones_juego::COMPRAR && @vista.comprar == 0)
             @juego.comprar
             @juego.siguientePasoCompletado(operacion)
             
-          elsif (!final && operacion == OperacionesJuego::GESTIONAR)
+          elsif (!final && operacion == Operaciones_juego::GESTIONAR)
             @vista.gestionar
             op = OperacionInmobilaria.new(@vista.iGestion, @vista.iPropiedad)
             if (op.gestion == GestionesInmobiliarias::VENDER)
@@ -40,7 +41,7 @@ module Civitas
               @juego.siguientePasoCompletado(operacion)
             end
             
-          elsif (!final && operacion == OperacionesJuego::SALIR_CARCEL)
+          elsif (!final && operacion == Operaciones_juego::SALIR_CARCEL)
             if (@vista.salirCarcel == 0)
               @juego.salirCarcelPagando
             else

@@ -5,9 +5,10 @@ require_relative 'OperacionesJuego'
 require_relative 'OperacionInmobiliaria'
 require 'io/console'
 
-module Civitas
+module JuegoTexto
 
   class Vista_textual
+    include Civitas
     
     def initialize
       @juegoModel

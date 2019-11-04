@@ -37,8 +37,7 @@ module Civitas
     end
     
     def aniadeCasilla(casilla)
-      carcel = Casilla.new("Carcel")
-      
+      carcel = Casilla.new_n("Carcel")
       
       if (@casillas.length == @numCasillaCarcel)
         @casillas.push(carcel)

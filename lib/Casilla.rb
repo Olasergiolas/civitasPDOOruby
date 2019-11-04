@@ -12,7 +12,7 @@ module Civitas
     class Casilla
     
     @@carcel = 0
-    def initialize(nombre, titulo, cantidad, numCasillaCarcel, mazo, tipo = TipoCasilla::DESCANSO)
+    def initialize(nombre, titulo, cantidad, numCasillaCarcel, mazo, tipo)
       init
       @@carcel = numCasillaCarcel
       @nombre = nombre
@@ -21,14 +21,18 @@ module Civitas
       @mazo = mazo
       @sorpresa = nil
       @tituloPropiedad = titulo
-    end 
+    end
+    
+    def self.new_n(nombre)
+      new(nombre, nil, 0, @@carcel, nil, TipoCasilla::DESCANSO)
+    end
     
     def self.new_t(titulo)
-      new(nil, titulo, 0, 0, nil, TipoCasilla::CALLE)
+      new(nil, titulo, 0, @@carcel, nil, TipoCasilla::CALLE)
     end
     
     def self.new_c_n(cantidad, nombre)
-      new(nombre, nil, cantidad, 0, nil, TipoCasilla::IMPUESTO)
+      new(nombre, nil, cantidad, @@carcel, nil, TipoCasilla::IMPUESTO)
     end
     
     def self.new_num_n(numCasillaCarcel, nombre)
@@ -36,7 +40,7 @@ module Civitas
     end
     
     def self.new_m_n(mazo, nombre)
-      new(nombre, nil, 0, 0, mazo, TipoCasilla::SORPRESA)
+      new(nombre, nil, 0, @@carcel, mazo, TipoCasilla::SORPRESA)
     end
     
     def informe(iactual, todos)

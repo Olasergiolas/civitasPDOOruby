@@ -13,16 +13,15 @@ module Civitas
     class CivitasJuego
       
       def initialize(nombres)
-        @indiceJugadorActual = Dado.instance.quienEmpieza(@jugadores.size)
         @jugadores = Array.new
         for i in 0..nombres.size-1
-          jugadores.push(Jugador.new(nombres[i]))
+          @jugadores.push(Jugador.new_1(nombres[i]))
         end
-        
+        @indiceJugadorActual = Dado.instance.quienEmpieza(@jugadores.size)
         @mazo = MazoSorpresas.new
         @tablero = Tablero.new(5)
-        @estado = @gestorEstados.estado_inicial
         @gestorEstados = Gestor_estados.new
+        @estado = @gestorEstados.estado_inicial
         inicializarTablero(@mazo)
         inicializarMazoSorpresas(@tablero)
       end
@@ -48,7 +47,7 @@ module Civitas
       
       def finalDelJuego
         terminar = false
-        for i in 1..@jugadores.size
+        for i in 0..@jugadores.size-1
           if @jugadores[i].enBancarrota
             terminar = true
           end
@@ -83,11 +82,11 @@ module Civitas
       
       def siguientePaso
         jugador = @jugadores[@indiceJugadorActual]
-        operacion = @gestor_estados.operacionesPermitidas(jugador,@estado)
-        if (operacion == OperacionesJuego::PASAR_TURNO)
+        operacion = @gestorEstados.operaciones_permitidas(jugador,@estado)
+        if (operacion == Operaciones_juego::PASAR_TURNO)
           pasarTurno
           siguientePasoCompletado(operacion)
-        elsif (operacion == OperacionesJuego::AVANZAR)
+        elsif (operacion == Operaciones_juego::AVANZAR)
           avanzaJugador
           siguientePasoCompletado(operacion)
         end
@@ -119,7 +118,7 @@ module Civitas
         end
       end
       
-      def inicialiarMazoSorpresas(tablero)
+      def inicializarMazoSorpresas(tablero)
         
         s1 = Sorpresa.new_tp_tb(TipoSorpresa::IRCARCEL, tablero)
         s2 = Sorpresa.new_tp_m(TipoSorpresa::SALIRCARCEL, @mazo)

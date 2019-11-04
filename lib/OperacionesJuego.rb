@@ -5,7 +5,7 @@
 #encoding: UTF-8
 
 module Civitas
-    module OperacionesJuego
+    module Operaciones_juego
     AVANZAR = :avanzar
     COMPRAR = :comprar
     GESTIONAR = :gestionar
