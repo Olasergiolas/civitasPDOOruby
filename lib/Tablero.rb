@@ -59,7 +59,7 @@ module Civitas
     end
     
     def getCasilla(n)
-      if n <= @casillas.length
+      if (n < @casillas.length)
         @casillas[n]
         
       else
@@ -70,13 +70,14 @@ module Civitas
     def nuevaPosicion(actual, tirada)
       desplazamiento = actual + tirada
       if (correcto == true && desplazamiento >= @casillas.length)
+        porSalida += 1
         desplazamiento %= @casillas.length
-        porSalida = porSalida + 1
         
       elsif correcto == false
         desplazamiento = -1
-        
+       
       end
+      return desplazamiento
       
      def calcularTirada(origen, destino)
        tirada = destino - origen

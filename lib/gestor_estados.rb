@@ -28,7 +28,7 @@ module Civitas
         if (jugador.encarcelado)
           op = Operaciones_juego::PASAR_TURNO
         else
-          if (jugador.puede_comprar)
+          if (jugador.puedeComprar)
             op = Operaciones_juego::COMPRAR
           else
             if (jugador.tiene_algo_que_gestionar)

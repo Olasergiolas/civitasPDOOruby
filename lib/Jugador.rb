@@ -24,7 +24,7 @@ module Civitas
     end
     
     def self.new_1(nombre)
-      new(false, nombre, 0, false, 0, Array.new, false)
+      new(false, nombre, 0, false, 0, Array.new, nil)
     end
    
     def self.newCopy(otro)    #arreglar                     
@@ -196,7 +196,7 @@ module Civitas
       return true
     end
     
-    def perderSalvoConducto
+    def perderSalvoconducto
       @salvoconducto.usada
       @salvoconducto = 0
     end
@@ -283,7 +283,7 @@ module Civitas
     def tieneSalvoconducto
       tiene = false
       
-      if @salvoconducto != 0
+      if @salvoconducto != nil
         tiene = true
       end
     end
@@ -306,9 +306,9 @@ module Civitas
       return resultado      
     end
     
-    protected :debeSerEncarcelado, :nombre, :propiedades, :saldo
+    protected :debeSerEncarcelado, :propiedades, :saldo
     
-    private :existeLaPropiedad, :hotelesMax, :casasMax, :precioLibertad, :getPremioPasoSalida, :perderSalvoConducto, :puedeSalirCarcelPagando, :puedoEdificarCasa, :puedoEdificarHotel, :puedoGastar
+    private :existeLaPropiedad, :hotelesMax, :casasMax, :precioLibertad, :getPremioPasoSalida, :perderSalvoconducto, :puedeSalirCarcelPagando, :puedoEdificarCasa, :puedoEdificarHotel, :puedoGastar
     
   end
 end
