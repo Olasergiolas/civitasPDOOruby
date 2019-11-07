@@ -1,4 +1,4 @@
-require_relative 'diario'
+require_relative 'Diario'
 require_relative 'OperacionesJuego'
 require_relative 'Estados_juego'
 
