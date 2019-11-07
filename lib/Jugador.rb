@@ -24,7 +24,7 @@ module Civitas
     end
     
     def self.new_1(nombre)
-      new(false, nombre, 0, false, 0, Array.new, nil)
+      new(false, nombre, 0, false, @@saldoInicial, Array.new, nil)
     end
    
     def self.newCopy(otro)    #arreglar                     
@@ -272,7 +272,7 @@ module Civitas
       end
     end
     
-    def tieneAlgoQueGestionar
+    def tiene_algo_que_gestionar
       tienePropiedades = false
       
       if @propiedades.size > 0

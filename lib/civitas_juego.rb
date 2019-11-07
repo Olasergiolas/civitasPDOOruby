@@ -19,7 +19,7 @@ module Civitas
         end
         @indiceJugadorActual = Dado.instance.quienEmpieza(@jugadores.size)
         @mazo = MazoSorpresas.new
-        @tablero = Tablero.new(5)
+        @tablero = Tablero.new(2)
         @gestorEstados = Gestor_estados.new
         @estado = @gestorEstados.estado_inicial
         inicializarTablero(@mazo)

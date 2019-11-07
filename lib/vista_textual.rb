@@ -83,6 +83,7 @@ module JuegoTexto
 
     def mostrarSiguienteOperacion(operacion)
       puts operacion
+      return operacion
     end
 
     def mostrarEventos
@@ -97,11 +98,15 @@ module JuegoTexto
     end
 
     def actualizarVista
-      puts @juegoModel.getJugadorActual.toString
-      puts @juegoModel.getCasillaActual.toString
+      auxJ = @juegoModel.getJugadorActual
+      auxC = @juegoModel.getCasillaActual
+      
+      puts auxJ.toString      
+      puts auxC.toString
     end
     
     def salirCarcel
+      lista_Salidas = [SalidasCarcel::PAGANDO, SalidasCarcel::TIRANDO]
       menu("¿De qué forma se va a salir de la cárcel?", lista_Salidas)
     end
   end

@@ -12,6 +12,7 @@ module JuegoTexto
       
       def juega
         @vista.setCivitasJuego(@juego)
+        
         while (!@juego.finalDelJuego)
           @vista.actualizarVista
           @vista.pausa
