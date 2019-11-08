@@ -59,10 +59,10 @@ module JuegoTexto
       tab = "  "
       puts titulo
       index = 0
-=begin      lista.each { |l|
+      lista.each { |l|
         puts tab+index.to_s+"-"+l
         index += 1
-=end      }
+      }
 
       opcion = lee_entero(lista.length,
                           "\n"+tab+"Elige una opción: ",
@@ -73,13 +73,13 @@ module JuegoTexto
     
     def comprar
       lista_Respuestas = [Respuestas::NO, Respuestas::SI]
-      menu("¿Deseas comprar la calle?", lista_Respuestas)
+      menu("¿Deseas comprar la calle?", Lista_Respuestas)
     end
 
     def gestionar
       lista_Gestiones = [GestionesInmobiliarias::VENDER, GestionesInmobiliarias::HIPOTECAR, GestionesInmobiliarias::CANCELAR_HIPOTECA,
       GestionesInmobiliarias::CONSTRUIR_CASA, GestionesInmobiliarias::CONSTRUIR_HOTEL, GestionesInmobiliarias::TERMINAR]      
-      @iGestion = menu("¿Qué gestión inmobiliaria se va a realizar?", lista_Gestiones)
+      @iGestion = menu("¿Qué gestión inmobiliaria se va a realizar?", Lista_Gestiones)
       @iPropiedad = menu("Elige la propiedad.", @juegoModel.getJugadorActual.propiedades) #Supongo que es así pero no estoy seguro
     end
 
@@ -109,7 +109,7 @@ module JuegoTexto
     
     def salirCarcel
       lista_Salidas = [SalidasCarcel::PAGANDO, SalidasCarcel::TIRANDO]
-      menu("¿De qué forma se va a salir de la cárcel?", lista_Salidas)
+      menu("¿De qué forma se va a salir de la cárcel?", Lista_Salidas)
     end
   end
 
