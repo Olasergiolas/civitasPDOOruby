@@ -12,6 +12,6 @@ module Civitas
       TERMINAR = :terminar
     end
     
-    lista_Gestiones = [GestionesInmobiliarias::VENDER, GestionesInmobiliarias::HIPOTECAR, GestionesInmobiliarias::CANCELAR_HIPOTECA,
-      GestionesInmobiliarias::CONSTRUIR_CASA, GestionesInmobiliarias::CONSTRUIR_HOTEL, GestionesInmobiliarias::TERMINAR]
+    Lista_Gestiones = ["Vender", "Hipotecar", "CancelarHipoteca",
+      "ConstruirCasa", "ConstruirHotel", "Terminar"]
 end

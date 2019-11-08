@@ -306,7 +306,7 @@ module Civitas
       return resultado      
     end
     
-    protected :debeSerEncarcelado, :propiedades, :saldo
+    protected :debeSerEncarcelado, :saldo
     
     private :existeLaPropiedad, :hotelesMax, :casasMax, :precioLibertad, :getPremioPasoSalida, :perderSalvoconducto, :puedeSalirCarcelPagando, :puedoEdificarCasa, :puedoEdificarHotel, :puedoGastar
     

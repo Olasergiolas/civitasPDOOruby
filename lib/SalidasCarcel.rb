@@ -8,5 +8,5 @@ module Civitas
       TIRANDO = :tirando
     end
     
-    lista_Salidas = [SalidasCarcel::PAGANDO, SalidasCarcel::TIRANDO]
+    Lista_Salidas = ["Pagando", "Tirando"]
 end

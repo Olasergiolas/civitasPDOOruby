@@ -59,7 +59,7 @@ module Civitas
       booleano = false
       if (!tienePropietario)
         @propietario = jugador
-        jugador.paga(getPrecioCompra)
+        jugador.paga(@precioCompra)
         booleano = true
       end
     end

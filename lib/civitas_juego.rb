@@ -130,7 +130,7 @@ module Civitas
       end
       
       def inicializarTablero(mazo)
-        
+=begin
         c1 = Casilla.new_num_n(@tablero.numCasillaCarcel, "Carcel")
         c2 = Casilla.new_m_n(mazo, "Bowsy")
         c3 = Casilla.new_c_n(1000, "Hacienda")
@@ -138,6 +138,29 @@ module Civitas
         @tablero.aniadeCasilla(c1)
         @tablero.aniadeCasilla(c2)
         @tablero.aniadeCasilla(c3)
+=end
+        
+        titulo1 = TituloPropiedad.new("Calle Alcala",200,10,150,600,300)
+        titulo2 = TituloPropiedad.new("Calle Granada",200,10,150,600,300)
+        titulo3 = TituloPropiedad.new("Calle Pepe",200,10,150,600,300)
+        titulo4 = TituloPropiedad.new("Calle Alta",200,10,150,600,300)
+        titulo5 = TituloPropiedad.new("Calle Baja",200,10,150,600,300)
+        titulo6 = TituloPropiedad.new("Calle Teo",200,10,150,600,300)
+        
+        @tablero.aniadeCasilla(Casilla.new_t(titulo1))
+        @tablero.aniadeCasilla(Casilla.new_t(titulo2))
+        @tablero.aniadeCasilla(Casilla.new_t(titulo3))
+        @tablero.aniadeCasilla(Casilla.new_t(titulo4))
+        @tablero.aniadeCasilla(Casilla.new_t(titulo5))
+        @tablero.aniadeCasilla(Casilla.new_t(titulo6))
+        
+        sorpresa1 = Casilla.new_m_n(@mazo, "Sorpresa")
+        @tablero.aniadeCasilla(sorpresa1)
+        @tablero.aniadeJuez
+
+        descanso = Casilla.new_n("Parking")
+        @tablero.aniadeCasilla(descanso)
+        
       end
       
       def pasarTurno

@@ -95,7 +95,12 @@ module Civitas
     end
     
     def toString
-      info = "Casilla #{@nombre} con importe #{@importe}, de tipo #{@tipo}, con un TituloPropiedad de nombre\n"
+      if (@tipo == TipoCasilla::CALLE)
+        info = "Casilla #{@tituloPropiedad.nombre} con importe #{@tituloPropiedad.precioCompra}, de tipo #{@tipo}, con un TituloPropiedad de nombre\n"
+      
+      else
+        info = "Casilla #{@nombre} con importe #{@importe}, de tipo #{@tipo}, con un TituloPropiedad de nombre\n"
+      end
     end
     
     def init
