@@ -16,17 +16,22 @@ module JuegoTexto
         while (!@juego.finalDelJuego)
           @vista.actualizarVista
           @vista.pausa
-          operacion = @vista.mostrarSiguienteOperacion(@juego.siguientePaso)
+          operacion = @juego.siguientePaso
           if (operacion != Operaciones_juego::PASAR_TURNO)
             @vista.mostrarEventos
           end
           final = @juego.finalDelJuego
-          if (!final && operacion == Operaciones_juego::COMPRAR && @vista.comprar == 0)
-            @juego.comprar
+          if (!final && operacion == Operaciones_juego::COMPRAR)
+            if (@vista.comprar == 0)
+              @juego.comprar
+            end
+            
             @juego.siguientePasoCompletado(operacion)
             
+            #Esto no funciona porque está instanciando op con dos int y luego intenta compararlos con un enum
           elsif (!final && operacion == Operaciones_juego::GESTIONAR)
             @vista.gestionar
+            
             op = OperacionInmobilaria.new(@vista.iGestion, @vista.iPropiedad)
             if (op.gestion == GestionesInmobiliarias::VENDER)
               @juego.vender(op.numPropiedad)
@@ -50,9 +55,9 @@ module JuegoTexto
             end
           end
         end
-        for i in 0..3
+=begin        for i in 0..3
           @juego.ranking.toString
-        end
-      end
+=end        end
     end
+  end
 end
