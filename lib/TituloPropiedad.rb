@@ -30,7 +30,7 @@ module Civitas
     
     def propietarioEncarcelado
       
-      if (@propietario.isEncarcelado())
+      if (@propietario.encarcelado)
         encarcelado = true
       
       else
@@ -115,7 +115,7 @@ module Civitas
     end
     
     def tramitarAlquiler(jugador)
-      if (tienePropietario() && !esEsteElPropietario(jugador))
+      if (tienePropietario && !esEsteElPropietario(jugador))
         jugador.pagaAlquiler(getPrecioAlquiler)
         @propietario.recibe(getPrecioAlquiler)
       end
@@ -146,7 +146,7 @@ module Civitas
     end
     
     def getPrecioAlquiler
-      if (@hipotecado || propietarioEncarcelado())
+      if (@hipotecado || propietarioEncarcelado)
         precio_alquiler = 0
       
       else

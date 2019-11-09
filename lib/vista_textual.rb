@@ -77,7 +77,9 @@ module JuegoTexto
 
     def gestionar   
       @iGestion = menu("¿Qué gestión inmobiliaria se va a realizar?", Lista_Gestiones)
-      @iPropiedad = menu("Elige la propiedad.", @juegoModel.getJugadorActual.propiedadesToString) 
+      if @iGestion != 5
+        @iPropiedad = menu("Elige la propiedad.", @juegoModel.getJugadorActual.propiedadesToString)
+      end
     end
 
     def mostrarSiguienteOperacion(operacion)

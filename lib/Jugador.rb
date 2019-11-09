@@ -37,8 +37,8 @@ module Civitas
     def cancelarHipoteca(ip)
       result = false
       if (existeLaPropiedad(ip) && puedoGastar(@propiedades[ip].getImporteCancelarHipoteca))
-        result = @propiedades[i].cancelarHipoteca(self)
-        Diario.instance.ocurre_evento("El jugador " + @nombre + " cancela la hipoteca de la propiedad " + ip)
+        result = @propiedades[ip].cancelarHipoteca(self)
+        Diario.instance.ocurre_evento("El jugador #{@nombre} cancela la hipoteca de la propiedad #{ip}")
       end
     end
     
@@ -59,7 +59,7 @@ module Civitas
       result = false
       if (@puedeComprar && puedoGastar(titulo.precioCompra))
         @propiedades << titulo
-        Diario.instance.ocurre_evento("El jugador "+@nombre+" compra la propiedad "+titulo.nombre)
+        Diario.instance.ocurre_evento("El jugador #{@nombre} compra la propiedad #{titulo.nombre}")
         @puedeComprar = false
         result = titulo.comprar(self)
       end
@@ -77,8 +77,8 @@ module Civitas
       result = false
       propiedad = @propiedades[ip]
       if (existeLaPropiedad(ip) && puedoEdificarHotel(propiedad))
-        propiedad.derruirCasa(@@casasPorHotel, self)
-        Diario.instance.ocurre_evento("El jugador "+@nombre+" construye hotel en la propiedad "+ip)
+        propiedad.derruirCasas(@@casasPorHotel, self)
+        Diario.instance.ocurre_evento("El jugador #{@nombre} construye hotel en la propiedad #{ip}")
         result = propiedad.construirHotel(self)
       end
     end

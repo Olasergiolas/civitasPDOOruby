@@ -50,7 +50,7 @@ module Civitas
     
     def jugadorCorrecto(iactual, todos)
       correcto = false
-      if (iactual > 0 && iactual <= todos.size)
+      if (iactual >= 0 && iactual <= todos.size)
         correcto = true
       end
       
