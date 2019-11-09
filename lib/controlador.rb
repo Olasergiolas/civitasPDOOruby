@@ -31,11 +31,10 @@ module JuegoTexto
             #Esto no funciona porque está instanciando op con dos int y luego intenta compararlos con un enum
           elsif (!final && operacion == Operaciones_juego::GESTIONAR)
             @vista.gestionar
-            
-            op = OperacionInmobilaria.new(@vista.iGestion, @vista.iPropiedad)
+            op = OperacionInmobiliaria.new(Lista_Gestiones_Enum[@vista.iGestion], @vista.iPropiedad)
             if (op.gestion == GestionesInmobiliarias::VENDER)
               @juego.vender(op.numPropiedad)
-            elsif (op.gestion == GestionesInmobiliaras::HIPOTECAR)
+            elsif (op.gestion == GestionesInmobiliarias::HIPOTECAR)
               @juego.hipotecar(op.numPropiedad)
             elsif (op.gestion == GestionesInmobiliarias::CANCELAR_HIPOTECA)
               @juego.cancelarHipoteca(op.numPropiedad)

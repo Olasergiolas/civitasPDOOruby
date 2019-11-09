@@ -133,7 +133,7 @@ module Civitas
       result = false
       if (!@encarcelado && existeLaPropiedad(ip))
         @propiedades[ip].hipotecar(self)
-        Diario.instance.ocurre_evento("El jugador "+@nombre+" hipoteca la propiedad "+ip)
+        Diario.instance.ocurre_evento("El jugador #{@nombre} hipoteca la propiedad #{ip}")
         result = true
       end
     end
@@ -220,14 +220,14 @@ module Civitas
     
     def puedoEdificarCasa(propiedad)
       puedo = false
-      if @propiedad.esEsteElPropietario(self) && propiedad.numCasas < @@casasMax && puedoGastar(propiedad.precioEdificar)
+      if propiedad.numCasas < @@casasMax && puedoGastar(propiedad.precioEdificar)
         puedo = true        
       end
     end
     
     def puedoEdificarHotel(propiedad)
       puedo = false
-      if @propiedad.esEsteElPropietario(self) && propiedad.numHoteles < @@hotelesMax && propiedad.numCasas >= @@casasPorHotel && puedoGastar(propiedad.precioEdificar)
+      if propiedad.numHoteles < @@hotelesMax && propiedad.numCasas >= @@casasPorHotel && puedoGastar(propiedad.precioEdificar)
         puedo = true
       end
     end
@@ -296,7 +296,7 @@ module Civitas
     def vender(ip)
       resultado = false
       
-      if !@encarcelado && existeLaPropiedad
+      if !@encarcelado && existeLaPropiedad(ip)
         @propiedades[ip].vender(self)  
         @propiedades.delete_at(ip)
         Diario.instance.ocurre_evento("El jugador #{@nombre} ha vendido una propiedad")
@@ -304,6 +304,14 @@ module Civitas
       end
       
       return resultado      
+    end
+    
+    def propiedadesToString
+      prop = Array.new
+      for i in 0..@propiedades.length-1
+        prop << @propiedades[i].toString
+      end
+      return prop
     end
     
     protected :debeSerEncarcelado, :saldo

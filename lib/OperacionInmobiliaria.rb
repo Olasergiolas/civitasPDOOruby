@@ -5,7 +5,7 @@ require_relative 'GestionesInmobiliarias'
 
 module Civitas
     class OperacionInmobiliaria
-      def initalize(gest, ip)
+      def initialize(gest, ip)
         @numPropiedad = ip
         @gestion = gest
       end

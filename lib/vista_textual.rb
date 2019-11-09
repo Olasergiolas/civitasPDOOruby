@@ -72,15 +72,12 @@ module JuegoTexto
 
     
     def comprar
-      lista_Respuestas = [Respuestas::NO, Respuestas::SI]
       menu("¿Deseas comprar la calle?", Lista_Respuestas)
     end
 
-    def gestionar
-      lista_Gestiones = [GestionesInmobiliarias::VENDER, GestionesInmobiliarias::HIPOTECAR, GestionesInmobiliarias::CANCELAR_HIPOTECA,
-      GestionesInmobiliarias::CONSTRUIR_CASA, GestionesInmobiliarias::CONSTRUIR_HOTEL, GestionesInmobiliarias::TERMINAR]      
+    def gestionar   
       @iGestion = menu("¿Qué gestión inmobiliaria se va a realizar?", Lista_Gestiones)
-      @iPropiedad = menu("Elige la propiedad.", @juegoModel.getJugadorActual.propiedades) #Supongo que es así pero no estoy seguro
+      @iPropiedad = menu("Elige la propiedad.", @juegoModel.getJugadorActual.propiedadesToString) 
     end
 
     def mostrarSiguienteOperacion(operacion)

@@ -14,4 +14,8 @@ module Civitas
     
     Lista_Gestiones = ["Vender", "Hipotecar", "CancelarHipoteca",
       "ConstruirCasa", "ConstruirHotel", "Terminar"]
+    
+    Lista_Gestiones_Enum = [GestionesInmobiliarias::VENDER, GestionesInmobiliarias::HIPOTECAR, 
+      GestionesInmobiliarias::CANCELAR_HIPOTECA, GestionesInmobiliarias::CONSTRUIR_CASA, GestionesInmobiliarias::CONSTRUIR_HOTEL,
+      GestionesInmobiliarias::TERMINAR]
 end
