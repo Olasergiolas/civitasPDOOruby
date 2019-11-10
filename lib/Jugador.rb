@@ -36,7 +36,7 @@ module Civitas
     
     def cancelarHipoteca(ip)
       result = false
-      if (existeLaPropiedad(ip) && puedoGastar(@propiedades[ip].getImporteCancelarHipoteca))
+      if (!@encarcelado && existeLaPropiedad(ip) && puedoGastar(@propiedades[ip].getImporteCancelarHipoteca))
         result = @propiedades[ip].cancelarHipoteca(self)
         Diario.instance.ocurre_evento("El jugador #{@nombre} cancela la hipoteca de la propiedad #{ip}")
       end
@@ -57,7 +57,7 @@ module Civitas
     
     def comprar(titulo)
       result = false
-      if (@puedeComprar && puedoGastar(titulo.precioCompra))
+      if (!@encarcelado && @puedeComprar && puedoGastar(titulo.precioCompra))
         @propiedades << titulo
         Diario.instance.ocurre_evento("El jugador #{@nombre} compra la propiedad #{titulo.nombre}")
         @puedeComprar = false
@@ -68,7 +68,7 @@ module Civitas
     def construirCasa(ip)
       result = false
       propiedad = @propiedades[ip]
-      if (existeLaPropiedad(ip) && puedoEdificarCasa(propiedad))
+      if (!@encarcelado && existeLaPropiedad(ip) && puedoEdificarCasa(propiedad))
         result = propiedad.construirCasa(self)
       end
     end
@@ -76,7 +76,7 @@ module Civitas
     def construirHotel(ip)
       result = false
       propiedad = @propiedades[ip]
-      if (existeLaPropiedad(ip) && puedoEdificarHotel(propiedad))
+      if (!@encarcelado && existeLaPropiedad(ip) && puedoEdificarHotel(propiedad))
         propiedad.derruirCasas(@@casasPorHotel, self)
         Diario.instance.ocurre_evento("El jugador #{@nombre} construye hotel en la propiedad #{ip}")
         result = propiedad.construirHotel(self)
@@ -140,7 +140,7 @@ module Civitas
     
     def modificarSaldo(cantidad)
       @saldo = @saldo + cantidad
-      Diario.instance.ocurre_evento("Se le ha modificado el saldo al jugador #{@nombre}")
+      Diario.instance.ocurre_evento("Se le suma #{cantidad} al saldo del jugador #{@nombre}")
       return true
     end
     
@@ -235,7 +235,7 @@ module Civitas
     def puedoGastar(precio)
       puedo = false
       
-      if !@encarcelado && (@saldo >= precio)
+      if (@saldo >= precio)
         puedo = true
       end
       
@@ -257,7 +257,7 @@ module Civitas
       if @encarcelado && puedeSalirCarcelPagando
         paga(@@precioLibertad)
         @encarcelado = false
-        Diario.instance.ocurre_evento("El jugador #{@nombre} paga para salir de la carcel")
+        Diario.instance.ocurre_evento("El jugador #{@nombre} paga #{@@precioLibertad} para salir de la carcel")
         resultado = true
       end
     end
@@ -289,7 +289,12 @@ module Civitas
     end
     
     def toString
-      info = "Jugador #{@nombre} en la casilla #{@numCasillaActual} con saldo #{@saldo}. Salvoconducto? #{@salvoconducto},
+      if (@salvoconducto == nil)
+        salvoconducto = false
+      else
+        salvoconducto = true
+      end
+      info = "Jugador #{@nombre} en la casilla #{@numCasillaActual} con saldo #{@saldo}. Salvoconducto? #{salvoconducto},
               Puede comprar? #{@puedeComprar}, Encarcelado? #{@encarcelado}\n"
     end
     

@@ -107,7 +107,6 @@ module JuegoTexto
     end
     
     def salirCarcel
-      lista_Salidas = [SalidasCarcel::PAGANDO, SalidasCarcel::TIRANDO]
       menu("¿De qué forma se va a salir de la cárcel?", Lista_Salidas)
     end
   end

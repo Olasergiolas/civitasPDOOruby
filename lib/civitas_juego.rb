@@ -48,8 +48,8 @@ module Civitas
       def finalDelJuego
         terminar = false
         for i in 0..@jugadores.size-1
-          if @jugadores[i].enBancarrota
-            terminar = true
+          if @jugadores[i].enBancarrota       
+            terminar = true                    #¿habría que poner un break?
           end
         end
         
@@ -73,11 +73,11 @@ module Civitas
       end
       
       def salirCarcelPagando
-        @jugadores[@indiceJugadorActual].salirCarcelPagando(ip)
+        @jugadores[@indiceJugadorActual].salirCarcelPagando
       end
       
       def salirCarcelTirando
-        @jugadores[@indiceJugadorActual].salirCarcelTirando(ip)
+        @jugadores[@indiceJugadorActual].salirCarcelTirando
       end
       
       def siguientePaso
@@ -99,6 +99,13 @@ module Civitas
       
       def vender(ip)
         @jugadores[@indiceJugadorActual].vender(ip)
+      end
+      
+      def mostrarRanking
+        rk = ranking
+        for i in 0..rk.length-1
+          puts rk[i].toString
+        end
       end
       
       private
@@ -130,6 +137,7 @@ module Civitas
       end
       
       def inicializarTablero(mazo)
+
 =begin
         c1 = Casilla.new_num_n(@tablero.numCasillaCarcel, "Carcel")
         c2 = Casilla.new_m_n(mazo, "Bowsy")
@@ -173,9 +181,9 @@ module Civitas
       end
       
       def ranking
-        @ranking = Array.new(@jugadores)
-        @ranking.sort
-        @ranking
+        ranking = Array.new(@jugadores)
+        ranking.sort
+        ranking
       end
     end
 end

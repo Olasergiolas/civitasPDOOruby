@@ -14,7 +14,6 @@ require_relative 'Casilla'
 module Civitas
     class Sorpresa
       def initialize(t, v, tip, m, tab)
-        init
         @texto = t
         @valor = v
         @tipo = tip
@@ -99,7 +98,7 @@ module Civitas
       end
       
       def aplicarAJugador_irCarcel(actual, todos)
-        jugador.encarcelar(@tablero.numCasillaCarcel)
+        todos[actual].encarcelar(@tablero.numCasillaCarcel)
       end
       
       def aplicarAJugador_pagarCobrar(actual, todos)
@@ -140,12 +139,6 @@ module Civitas
       
       def informe(actual, todos)
         Diario.instance.ocurre_evento("Aplicando sorpresa al jugador #{todos[actual].nombre}")
-      end
-      
-      def init
-        @valor = -1
-        @mazo = 0
-        @tablero = 0
       end
       
       private_class_method :new

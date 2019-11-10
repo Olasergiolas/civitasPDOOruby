@@ -27,8 +27,7 @@ module JuegoTexto
             end
             
             @juego.siguientePasoCompletado(operacion)
-            
-            #Esto no funciona porque está instanciando op con dos int y luego intenta compararlos con un enum
+           
           elsif (!final && operacion == Operaciones_juego::GESTIONAR)
             @vista.gestionar
             op = OperacionInmobiliaria.new(Lista_Gestiones_Enum[@vista.iGestion], @vista.iPropiedad)
@@ -52,11 +51,10 @@ module JuegoTexto
             else
               @juego.salirCarcelTirando
             end
+            @juego.siguientePasoCompletado(operacion)
           end
         end
-=begin        for i in 0..3
-          @juego.ranking.toString
-=end        end
+        @juego.mostrarRanking
     end
   end
 end
