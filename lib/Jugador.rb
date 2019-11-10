@@ -198,7 +198,7 @@ module Civitas
     
     def perderSalvoconducto
       @salvoconducto.usada
-      @salvoconducto = 0
+      @salvoconducto = nil
     end
     
     def puedeComprarCasilla

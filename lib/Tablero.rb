@@ -45,7 +45,7 @@ module Civitas
       
       @casillas.push(casilla)
       
-      while (@casillas.length == @numCasillaCarcel)
+      if (@casillas.length == @numCasillaCarcel)
         @casillas.push(carcel)
       end
     end
@@ -69,25 +69,24 @@ module Civitas
     
     def nuevaPosicion(actual, tirada)
       desplazamiento = actual + tirada
-      if (correcto == true && desplazamiento >= @casillas.length)
-        porSalida += 1
+      if (correcto && desplazamiento >= @casillas.length)
+        @porSalida += 1
         desplazamiento %= @casillas.length
         
-      elsif correcto == false
+      elsif !correcto
         desplazamiento = -1
        
       end
       return desplazamiento
+    end
       
      def calcularTirada(origen, destino)
        tirada = destino - origen
        if tirada < 0
          tirada += @casillas.length
        end
+       return tirada
      end
-      
-    end
-    
     
     private
     

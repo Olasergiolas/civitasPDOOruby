@@ -33,6 +33,10 @@ module Civitas
         new(texto, 0, tipo, nil, nil)
       end
       
+      def self.new_tp_v(tipo, valor)
+        new(" ", valor, tipo, nil, nil)
+      end
+      
       def self.new_tp_m(tipo, mazo)
         new(nil, 0, tipo, mazo, nil)
       end
@@ -92,7 +96,7 @@ module Civitas
       def aplicarAJugador_irACasilla(actual, todos)
         casillajug = todos[actual].numCasillaActual
         tirada = @tablero.calcularTirada(casillajug, @valor)
-        npos = todos[actual].nuevaPosicion(casillajug, tirada)
+        npos = @tablero.nuevaPosicion(casillajug, tirada)
         todos[actual].moverACasilla(npos)
         @tablero.getCasilla(@valor).recibeJugador(actual, todos)
       end
@@ -106,14 +110,14 @@ module Civitas
       end
       
       def aplicarAJugador_porCasaHotel(actual, todos)
-        todos[actual].modificarSaldo(@valor * (todos[actual].propiedades.size))
+        todos[actual].modificarSaldo(@valor * (todos[actual].cantidadCasasHoteles))
       end
       
       def aplicarAJugador_porJugador(actual, todos)
-        cobrar = Sorpresa.new_tp_tx(TipoSorpresa::PAGARCOBRAR, "Recibe dinero")
-        pagar = Sorpresa.new_tp_tx(TipoSorpresa::PAGARCOBRAR, "Todos a pagarle")           #¿Cómo le modifico el valor?
+        cobrar = Sorpresa.new_tp_v(TipoSorpresa::PAGARCOBRAR, @valor*(todos.size-1))
+        pagar = Sorpresa.new_tp_v(TipoSorpresa::PAGARCOBRAR, @valor*-1)    
 
-        for i in 1..todos.size
+        for i in 0..todos.size-1
           if (i != actual)
             pagar.aplicarAJugador(i, todos)
 
@@ -125,7 +129,7 @@ module Civitas
       
       def aplicarAJugador_salirCarcel(actual, todos)
         loTienen = false
-        for i in 1..todos.size                              #Debería usar un break?
+        for i in 0..todos.size-1                              #Debería usar un break?
           if todos[i].tieneSalvoconducto
             loTienen = true
           end

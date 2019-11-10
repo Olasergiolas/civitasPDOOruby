@@ -19,7 +19,7 @@ module Civitas
         end
         @indiceJugadorActual = Dado.instance.quienEmpieza(@jugadores.size)
         @mazo = MazoSorpresas.new
-        @tablero = Tablero.new(2)
+        @tablero = Tablero.new(1)
         @gestorEstados = Gestor_estados.new
         @estado = @gestorEstados.estado_inicial
         inicializarTablero(@mazo)
@@ -127,17 +127,18 @@ module Civitas
       
       def inicializarMazoSorpresas(tablero)
         
-        s1 = Sorpresa.new_tp_tb(TipoSorpresa::IRCARCEL, tablero)
-        s2 = Sorpresa.new_tp_m(TipoSorpresa::SALIRCARCEL, @mazo)
-        s3 = Sorpresa.new_tp_tx(TipoSorpresa::PORCASAHOTEL, "A pagar todos")
+        #s1 = Sorpresa.new_tp_tb(TipoSorpresa::IRCARCEL, tablero)
+        #s2 = Sorpresa.new_tp_m(TipoSorpresa::SALIRCARCEL, @mazo)
+        #s3 = Sorpresa.new_tp_tx(TipoSorpresa::PORCASAHOTEL, "A pagar todos")
+        s4 = Sorpresa.new_tp_tb_v_tx(TipoSorpresa::IRCASILLA, @tablero, 0, "prueba")
         
-        @mazo.alMazo(s1)
-        @mazo.alMazo(s2)
-        @mazo.alMazo(s3)
+        #@mazo.alMazo(s1)
+        #@mazo.alMazo(s2)
+        #@mazo.alMazo(s3)
+        @mazo.alMazo(s4)
       end
       
       def inicializarTablero(mazo)
-
 =begin
         c1 = Casilla.new_num_n(@tablero.numCasillaCarcel, "Carcel")
         c2 = Casilla.new_m_n(mazo, "Bowsy")
@@ -146,7 +147,7 @@ module Civitas
         @tablero.aniadeCasilla(c1)
         @tablero.aniadeCasilla(c2)
         @tablero.aniadeCasilla(c3)
-=end
+
         
         titulo1 = TituloPropiedad.new("Calle Alcala",200,10,150,600,300)
         titulo2 = TituloPropiedad.new("Calle Granada",200,10,150,600,300)
@@ -161,13 +162,13 @@ module Civitas
         @tablero.aniadeCasilla(Casilla.new_t(titulo4))
         @tablero.aniadeCasilla(Casilla.new_t(titulo5))
         @tablero.aniadeCasilla(Casilla.new_t(titulo6))
-        
+=end
         sorpresa1 = Casilla.new_m_n(@mazo, "Sorpresa")
         @tablero.aniadeCasilla(sorpresa1)
         @tablero.aniadeJuez
 
-        descanso = Casilla.new_n("Parking")
-        @tablero.aniadeCasilla(descanso)
+        #descanso = Casilla.new_n("Parking")
+        #@tablero.aniadeCasilla(descanso)
         
       end
       

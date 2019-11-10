@@ -13,7 +13,6 @@ module Civitas
     
     @@carcel = 0
     def initialize(nombre, titulo, cantidad, numCasillaCarcel, mazo, tipo)
-      init
       @@carcel = numCasillaCarcel
       @nombre = nombre
       @importe = cantidad
@@ -101,13 +100,6 @@ module Civitas
       else
         info = "Casilla #{@nombre} con importe #{@importe}, de tipo #{@tipo}, con un TituloPropiedad de nombre\n"
       end
-    end
-    
-    def init
-      @mazo = nil                            
-      @sorpresa = nil
-      @tituloPropiedad = nil
-      @importe = 0
     end
     
     attr_reader :nombre, :tituloPropiedad
