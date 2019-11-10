@@ -21,7 +21,7 @@ module Civitas
         @numCasillaCarcel = 1
       end
       
-      salida = Casilla.new_c_n(0, "Salida")
+      salida = Casilla.new_n("Salida")
       @casillas.push(salida)
     end
     

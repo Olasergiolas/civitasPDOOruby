@@ -95,10 +95,14 @@ module Civitas
       
       def aplicarAJugador_irACasilla(actual, todos)
         casillajug = todos[actual].numCasillaActual
-        tirada = @tablero.calcularTirada(casillajug, @valor)
+        valor = @valor
+        if valor == casillajug
+          valor = 0
+        end
+        tirada = @tablero.calcularTirada(casillajug, valor)
         npos = @tablero.nuevaPosicion(casillajug, tirada)
         todos[actual].moverACasilla(npos)
-        @tablero.getCasilla(@valor).recibeJugador(actual, todos)
+        @tablero.getCasilla(valor).recibeJugador(actual, todos)
       end
       
       def aplicarAJugador_irCarcel(actual, todos)
