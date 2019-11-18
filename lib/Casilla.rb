@@ -43,8 +43,7 @@ module Civitas
     end
     
     def informe(iactual, todos)
-      Diario.instance.ocurre_evento("El jugador #{todos[iactual].nombre} ha caido en una casilla #{@tipo}")
-      toString
+      Diario.instance.ocurre_evento("El jugador #{todos[iactual].nombre} ha caido en una casilla #{toString}")
     end
     
     def jugadorCorrecto(iactual, todos)

@@ -67,7 +67,7 @@ module Civitas
     def construirCasa(jugador)
       booleano = false
       if (esEsteElPropietario(jugador))
-        jugador.paga(@precioCompra)                              #No sé cuál se supone que es el precio
+        jugador.paga(@precioEdificar)                       
         @numCasas = @numCasas + 1
         booleano = true
       end
@@ -76,7 +76,7 @@ module Civitas
     def construirHotel(jugador)
       booleano = false
       if (esEsteElPropietario(jugador))
-        jugador.paga(@precioCompra)                              #No sé cuál se supone que es el precio
+        jugador.paga(@precioEdificar)                              
         @numHoteles = @numHoteles + 1
         booleano = true
       end
