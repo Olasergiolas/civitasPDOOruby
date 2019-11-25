@@ -5,6 +5,7 @@
 #encoding: UTF-8
 
 require_relative 'Casilla'
+require_relative 'CasillaJuez'
 
 module Civitas
     class Tablero
@@ -21,7 +22,7 @@ module Civitas
         @numCasillaCarcel = 1
       end
       
-      salida = Casilla.new_n("Salida")
+      salida = Casilla.new("Salida")
       @casillas.push(salida)
     end
     
@@ -37,7 +38,7 @@ module Civitas
     end
     
     def aniadeCasilla(casilla)
-      carcel = Casilla.new_n("Carcel")
+      carcel = Casilla.new("Carcel")
       
       if (@casillas.length == @numCasillaCarcel)
         @casillas.push(carcel)
@@ -51,7 +52,7 @@ module Civitas
     end
     
     def aniadeJuez
-      casillajuez = Casilla.new_num_n(@numCasillaCarcel, "Juez")
+      casillajuez = CasillaJuez.new(@numCasillaCarcel, "Juez")
       if @tieneJuez == false
         @casillas.push(casillajuez)
         @tieneJuez = true

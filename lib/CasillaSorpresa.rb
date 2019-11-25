@@ -14,7 +14,7 @@ module Civitas
       end
       
       def toString
-        info = "Sorpresa\n"
+        info = "Sorpresa"
       end
     end
 end

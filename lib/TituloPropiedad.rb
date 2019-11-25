@@ -24,8 +24,14 @@ module Civitas
     attr_reader :hipotecado, :nombre, :numCasas, :numHoteles, :propietario, :precioCompra, :precioEdificar
     
     def toString
-      return "#{@nombre}, #{@alquilerBase}, #{@factorRevalorizacion}, #{@hipotecaBase}, hipotecado: #{@hipotecado}, 
-          #{@numCasas}, #{@numHoteles}, #{@precioCompra}, #{@precioEdificar}, #{@propietario.nombre}\n"
+      info = "#{@nombre}, #{@alquilerBase}, #{@factorRevalorizacion}, #{@hipotecaBase}, hipotecado: #{@hipotecado}, 
+          #{@numCasas}, #{@numHoteles}, #{@precioCompra}, #{@precioEdificar}"
+      
+      if @propietario != nil
+        info += " con propietario de nombre #{@propietario.nombre}"
+      end
+      
+      return info
     end
     
     def propietarioEncarcelado

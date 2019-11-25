@@ -4,7 +4,7 @@ require_relative 'Jugador'
 require_relative 'TituloPropiedad'
 
 module Civitas
-    class CasillaCarcel < Casilla
+    class CasillaCalle < Casilla
       def initialize(titulo)
         @tituloPropiedad = titulo
       end
@@ -22,7 +22,7 @@ module Civitas
       end
       
       def toString
-        info = "Calle #{@propiedad.toString}\n"
+        info = "Calle #{@tituloPropiedad.toString}"
       end
       
       attr_reader :tituloPropiedad

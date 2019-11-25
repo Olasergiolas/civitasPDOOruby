@@ -8,6 +8,8 @@ require_relative 'Dado'
 require_relative 'MazoSorpresas'
 require_relative 'Tablero'
 require_relative 'OperacionesJuego'
+require_relative 'CasillaSorpresa'
+require_relative 'CasillaCalle'
 
 module Civitas
     class CivitasJuego
@@ -139,36 +141,27 @@ module Civitas
       end
       
       def inicializarTablero(mazo)
-=begin
-        c1 = Casilla.new_num_n(@tablero.numCasillaCarcel, "Carcel")
-        c2 = Casilla.new_m_n(mazo, "Bowsy")
-        c3 = Casilla.new_c_n(1000, "Hacienda")
-        
-        @tablero.aniadeCasilla(c1)
-        @tablero.aniadeCasilla(c2)
-        @tablero.aniadeCasilla(c3)
 
+        titulo1 = TituloPropiedad.new("Alcala",200,10,150,600,300)
+        titulo2 = TituloPropiedad.new("Granada",200,10,150,600,300)
+        titulo3 = TituloPropiedad.new("Pepe",200,10,150,600,300)
+        titulo4 = TituloPropiedad.new("Alta",200,10,150,600,300)
+        titulo5 = TituloPropiedad.new("Baja",200,10,150,600,300)
+        titulo6 = TituloPropiedad.new("Teo",200,10,150,600,300)
         
-        titulo1 = TituloPropiedad.new("Calle Alcala",200,10,150,600,300)
-        titulo2 = TituloPropiedad.new("Calle Granada",200,10,150,600,300)
-        titulo3 = TituloPropiedad.new("Calle Pepe",200,10,150,600,300)
-        titulo4 = TituloPropiedad.new("Calle Alta",200,10,150,600,300)
-        titulo5 = TituloPropiedad.new("Calle Baja",200,10,150,600,300)
-        titulo6 = TituloPropiedad.new("Calle Teo",200,10,150,600,300)
-        
-        @tablero.aniadeCasilla(Casilla.new_t(titulo1))
-        @tablero.aniadeCasilla(Casilla.new_t(titulo2))
-        @tablero.aniadeCasilla(Casilla.new_t(titulo3))
-        @tablero.aniadeCasilla(Casilla.new_t(titulo4))
-        @tablero.aniadeCasilla(Casilla.new_t(titulo5))
-        @tablero.aniadeCasilla(Casilla.new_t(titulo6))
-=end
-        sorpresa1 = Casilla.new_m_n(@mazo, "Sorpresa")
+        @tablero.aniadeCasilla(CasillaCalle.new(titulo1))
+        @tablero.aniadeCasilla(CasillaCalle.new(titulo2))
+        @tablero.aniadeCasilla(CasillaCalle.new(titulo3))
+        @tablero.aniadeCasilla(CasillaCalle.new(titulo4))
+        @tablero.aniadeCasilla(CasillaCalle.new(titulo5))
+        @tablero.aniadeCasilla(CasillaCalle.new(titulo6))
+
+        sorpresa1 = CasillaSorpresa.new("Sorpresa", @mazo)
         @tablero.aniadeCasilla(sorpresa1)
         @tablero.aniadeJuez
 
-        #descanso = Casilla.new_n("Parking")
-        #@tablero.aniadeCasilla(descanso)
+        descanso = Casilla.new("Parking")
+        @tablero.aniadeCasilla(descanso)
         
       end
       
