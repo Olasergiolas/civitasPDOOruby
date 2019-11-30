@@ -10,6 +10,12 @@ require_relative 'Tablero'
 require_relative 'OperacionesJuego'
 require_relative 'CasillaSorpresa'
 require_relative 'CasillaCalle'
+require_relative 'SorpresaIrCasilla'
+require_relative 'SorpresaIrCarcel'
+require_relative 'SorpresaPagarCobrar'
+require_relative 'SorpresaPorCasaHotel'
+require_relative 'SorpresaPorJugador'
+require_relative 'SorpresaSalirCarcel'
 
 module Civitas
     class CivitasJuego
@@ -129,14 +135,14 @@ module Civitas
       
       def inicializarMazoSorpresas(tablero)
         
-        #s1 = Sorpresa.new_tp_tb(TipoSorpresa::IRCARCEL, tablero)
-        #s2 = Sorpresa.new_tp_m(TipoSorpresa::SALIRCARCEL, @mazo)
-        #s3 = Sorpresa.new_tp_tx(TipoSorpresa::PORCASAHOTEL, "A pagar todos")
-        s4 = Sorpresa.new_tp_tb_v_tx(TipoSorpresa::IRCASILLA, @tablero, 0, "prueba")
+        s1 = SorpresaPagarCobrar.new(500, "A pagar")
+        s2 = SorpresaSalirCarcel.new(@mazo)
+        s3 = SorpresaPorCasaHotel.new(250, "A pagar todos")
+        s4 = SorpresaIrCarcel.new(tablero)
         
-        #@mazo.alMazo(s1)
-        #@mazo.alMazo(s2)
-        #@mazo.alMazo(s3)
+        @mazo.alMazo(s1)
+        @mazo.alMazo(s2)
+        @mazo.alMazo(s3)
         @mazo.alMazo(s4)
       end
       
@@ -149,6 +155,9 @@ module Civitas
         titulo5 = TituloPropiedad.new("Baja",200,10,150,600,300)
         titulo6 = TituloPropiedad.new("Teo",200,10,150,600,300)
         
+        sorpresa1 = CasillaSorpresa.new("Sorpresa", @mazo)
+        @tablero.aniadeCasilla(sorpresa1)
+                
         @tablero.aniadeCasilla(CasillaCalle.new(titulo1))
         @tablero.aniadeCasilla(CasillaCalle.new(titulo2))
         @tablero.aniadeCasilla(CasillaCalle.new(titulo3))
@@ -156,8 +165,7 @@ module Civitas
         @tablero.aniadeCasilla(CasillaCalle.new(titulo5))
         @tablero.aniadeCasilla(CasillaCalle.new(titulo6))
 
-        sorpresa1 = CasillaSorpresa.new("Sorpresa", @mazo)
-        @tablero.aniadeCasilla(sorpresa1)
+
         @tablero.aniadeJuez
 
         descanso = Casilla.new("Parking")

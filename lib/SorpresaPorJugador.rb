@@ -4,13 +4,13 @@
 
 module Civitas
   class SorpresaPorJugador < Sorpresa
-    def initialize(tipo, valor, texto)
-      @tipo = tipo
+    def initialize(valor, texto)
+      
       @valor = valor
       @texto = texto
     end
     
-    def aplicarAJugador_porJugador(actual, todos)
+    def aplicarAJugador(actual, todos)
       cobrar = Sorpresa.new_tp_v(TipoSorpresa::PAGARCOBRAR, @valor*(todos.size-1))
       pagar = Sorpresa.new_tp_v(TipoSorpresa::PAGARCOBRAR, @valor*-1)    
       
@@ -26,10 +26,6 @@ module Civitas
           end
         end
       end
-    end   
-    
-    def toString
-      info = "Sorpresa de tipo #{@tipo}"
     end
     
   end

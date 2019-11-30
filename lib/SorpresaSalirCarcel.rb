@@ -4,8 +4,8 @@
 
 module Civitas
   class SorpresaSalirCarcel < Sorpresa
-    def initialize(tipo, mazo)
-      @tipo = tipo
+    def initialize(mazo)
+      
       @mazo = mazo
     end
     
@@ -30,9 +30,12 @@ module Civitas
       end
     end
     
-    def toString
-      info = "Sorpresa de tipo #{@tipo}"
+    def salirDelMazo
+      @mazo.inhabilitarCartaEspecial(self)      
     end
-
+    
+    def usada
+        @mazo.habilitarCartaEspecial(self)
+    end
   end
 end
