@@ -7,13 +7,13 @@ require_relative 'Diario'
 
 module Civitas
   class Jugador
-    @@casasMax = 4
+    @casasMax = 4
     @@casasPorHotel = 4
-    @@hotelesMax = 4
+    @hotelesMax = 4
     @@pasoPorSalida = 1000
     @@precioLibertad = 200
     @@saldoInicial = 7500
-    def initialize(encarcelado, nombre, numCasillaActual, puedeComprar, saldo, propiedades, salvoconducto)
+    def initialize(nombre, encarcelado = false, numCasillaActual = 0, puedeComprar = false, saldo = @@saldoInicial, propiedades = Array.new, salvoconducto = nil)
       @encarcelado = encarcelado
       @nombre = nombre
       @numCasillaActual = numCasillaActual
@@ -23,15 +23,35 @@ module Civitas
       @salvoconducto = salvoconducto
     end
     
-    def self.new_1(nombre)
-      new(false, nombre, 0, false, @@saldoInicial, Array.new, nil)
-    end
-   
-    def self.newCopy(otro)    #arreglar                     
-      new(otro.encarcelado, otro.nombre, otro.numCasillaActual, otro.puedeComprar, otro.saldo, otro.propiedades, otro.salvoconducto)
+    def self.copia(otroJugador)   
+      new(otroJugador.nombre, otroJugador.encarcelado, otroJugador.numCasillaActual, otroJugador.puedeComprar, otroJugador.saldo, otroJugador.propiedades, otroJugador.salvoconducto)
     end
     
-    attr_reader :hotelesMax, :casasMax, :casasPorHotel, :encarcelado, :nombre, :numCasillaActual, :precioLibertad, :saldo, :encarcelado, :puedeComprar, :propiedades
+    def self.CasasMax
+      @casasMax
+    end
+    
+    def getCasasMax
+      self.class.CasasMax
+    end
+    
+    def self.HotelesMax
+      @hotelesMax
+    end
+    
+    def getHotelesMax
+      self.class.HotelesMax
+    end
+    
+    def self.getCasasPorHotel
+      @@casasPorHotel
+    end
+    
+    def self.getPrecioLibertad
+      @@precioLibertad
+    end
+    
+    attr_reader :encarcelado, :nombre, :numCasillaActual, :saldo, :encarcelado, :puedeComprar, :propiedades, :salvoconducto
     attr_writer :saldo, :numCasillaActual
     
     def cancelarHipoteca(ip)
@@ -319,9 +339,13 @@ module Civitas
       return prop
     end
     
-    protected :debeSerEncarcelado, :saldo
+    def aniadePropiedad(titulo)
+      @propiedades.push(titulo)
+    end
     
-    private :existeLaPropiedad, :hotelesMax, :casasMax, :precioLibertad, :getPremioPasoSalida, :perderSalvoconducto, :puedeSalirCarcelPagando, :puedoEdificarCasa, :puedoEdificarHotel, :puedoGastar
+    protected :debeSerEncarcelado
     
+    private :getHotelesMax, :getCasasMax, :existeLaPropiedad, :getPremioPasoSalida, :perderSalvoconducto, :puedeSalirCarcelPagando, :puedoEdificarCasa, :puedoEdificarHotel, :puedoGastar
+    private_class_method :getPrecioLibertad
   end
 end
