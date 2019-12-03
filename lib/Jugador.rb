@@ -24,7 +24,18 @@ module Civitas
     end
     
     def self.copia(otroJugador)   
-      new(otroJugador.nombre, otroJugador.encarcelado, otroJugador.numCasillaActual, otroJugador.puedeComprar, otroJugador.saldo, otroJugador.propiedades, otroJugador.salvoconducto)
+      jugador = new(otroJugador.nombre, otroJugador.encarcelado, otroJugador.numCasillaActual, otroJugador.puedeComprar, otroJugador.saldo, otroJugador.propiedades, otroJugador.salvoconducto)
+      jugador
+    end
+    
+    def desde(otroJugador)
+      @encarcelado = otroJugador.encarcelado
+      @nombre = otroJugador.nombre
+      @numCasillaActual = otroJugador.numCasillaActual
+      @puedeComprar = otroJugador.puedeComprar
+      @saldo = otroJugador.saldo
+      @propiedades = otroJugador.propiedades
+      @salvoconducto = otroJugador.salvoconducto
     end
     
     def self.CasasMax

@@ -11,12 +11,11 @@ module Civitas
     def main
       j1 = Jugador.new("Ines")
       
-      
       titulo1 = TituloPropiedad.new("Alcala",200,10,150,600,300)
       j1.aniadePropiedad(titulo1)
       puts j1.inspect
       
-      j1Esp = JugadorEspeculador.new(j1, 200)
+      j1Esp = JugadorEspeculador.nuevoEspeculador(j1, 200)
       puts j1Esp.inspect
     end
   end
