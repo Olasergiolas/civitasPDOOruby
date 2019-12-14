@@ -9,9 +9,10 @@ module Civitas
     
     @FactorEspeculador = 2
     @CasasMax = Jugador.CasasMax * @FactorEspeculador
+    @HotelesMax = Jugador.HotelesMax * @FactorEspeculador
     
     def initialize(fianza)
-      @Fianza = fianza
+      @fianza = fianza
     end
     
     attr_accessor :fianza
@@ -29,6 +30,21 @@ module Civitas
     
     def toString
       info = "Especulador, " + super
+    end
+    
+    def debeSerEncarcelado
+      debeSerlo = super
+      
+      if (debeSerlo && @saldo > @fianza)
+        puts "El jugador especulador paga la fianza y evita entrar en la carcel"
+        paga(@fianza)
+        debeSerlo = false
+      end
+    end
+    
+    def pagaImpuesto(cantidad)
+      cantidadEsp = cantidad/2
+      super(cantidadEsp)
     end
   end
 end
