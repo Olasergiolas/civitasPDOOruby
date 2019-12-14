@@ -57,8 +57,9 @@ module Civitas
       def finalDelJuego
         terminar = false
         for i in 0..@jugadores.size-1
-          if @jugadores[i].enBancarrota       
-            terminar = true                    #¿habría que poner un break?
+          if @jugadores[i].enBancarrota
+            next if (terminar == true)
+            terminar = true                    
           end
         end
         

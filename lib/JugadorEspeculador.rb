@@ -28,13 +28,7 @@ module Civitas
     end
     
     def toString
-      if (@salvoconducto == nil)
-        salvoconducto = false
-      else
-        salvoconducto = true
-      end
-      info = "Jugador Especulador #{@nombre} en la casilla #{@numCasillaActual} con saldo #{@saldo}. Salvoconducto? #{salvoconducto},
-              Puede comprar? #{@puedeComprar}, Encarcelado? #{@encarcelado}, con fianza #{@Fianza}\n"
+      info = "Especulador, " + super
     end
   end
 end
