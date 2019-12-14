@@ -5,9 +5,8 @@
 module Civitas
   class CasillaJuez < Casilla
     
-    @@ccarcel = 0
     def initialize(carcel, n)
-      @@carcel = carcel
+      @carcel = carcel
       @nombre = n
     end
     
@@ -15,7 +14,7 @@ module Civitas
       correcto = jugadorCorrecto(iactual, todos)
       if (correcto)
         informe(iactual, todos)
-        todos[iactual].encarcelar(@@carcel)
+        todos[iactual].encarcelar(@carcel)
       end
     end
     
