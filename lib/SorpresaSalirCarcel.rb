@@ -1,6 +1,4 @@
-# To change this license header, choose License Headers in Project Properties.
-# To change this template file, choose Tools | Templates
-# and open the template in the editor.
+#encoding:utf-8
 
 module Civitas
   class SorpresaSalirCarcel < Sorpresa
@@ -36,6 +34,10 @@ module Civitas
     
     def usada
         @mazo.habilitarCartaEspecial(self)
+    end
+    
+    def toString
+      info = "Salir Cárcel"
     end
   end
 end

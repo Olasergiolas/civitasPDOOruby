@@ -1,6 +1,3 @@
-# To change this license header, choose License Headers in Project Properties.
-# To change this template file, choose Tools | Templates
-# and open the template in the editor.
 
 module Civitas
   class SorpresaPagarCobrar < Sorpresa
@@ -16,6 +13,10 @@ module Civitas
           informe(actual, todos)
           todos[actual].modificarSaldo(@valor)
         end
-    end    
+    end  
+    
+    def toString
+      info = "Pagar Cobrar"
+    end
   end
 end

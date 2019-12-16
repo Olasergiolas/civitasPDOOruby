@@ -22,13 +22,13 @@ module Civitas
       end
       
       def toString
-        info = "Sorpresa de tipo #{@tipo}"
+        info = " "
       end
       
       private
       
       def informe(actual, todos)
-        Diario.instance.ocurre_evento("Aplicando sorpresa al jugador #{todos[actual].nombre}")
+        Diario.instance.ocurre_evento("Aplicando sorpresa #{toString} al jugador #{todos[actual].nombre}")
       end
     end
 end

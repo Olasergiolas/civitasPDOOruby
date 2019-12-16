@@ -44,7 +44,7 @@ module Civitas
       end
     end
     
-    def acutalizaPropietarioPorConversion(jugador)
+    def actualizaPropietarioPorConversion(jugador)
       @propietario = jugador
     end
     

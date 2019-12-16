@@ -20,7 +20,7 @@ module Civitas
     end
     
       def toString
-        info = "Sorpresa de tipo HacerEspeculador"
+        info = "Hacer Especulador"
       end
   end
 end

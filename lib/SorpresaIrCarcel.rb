@@ -1,6 +1,4 @@
-# To change this license header, choose License Headers in Project Properties.
-# To change this template file, choose Tools | Templates
-# and open the template in the editor.
+#encoding:utf-8
 
 module Civitas
   class SorpresaIrCarcel < Sorpresa
@@ -15,6 +13,10 @@ module Civitas
           informe(actual, todos)
           todos[actual].encarcelar(@tablero.numCasillaCarcel)
         end
+    end
+    
+    def toString
+      info = "Ir Cárcel"
     end
   end
 end

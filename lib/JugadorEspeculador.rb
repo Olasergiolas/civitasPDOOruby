@@ -22,7 +22,7 @@ module Civitas
       jEsp.desde(jugador)
       
       for i in 0..jEsp.propiedades.size - 1
-        jEsp.propiedades[i].acutalizaPropietarioPorConversion(jEsp)
+        jEsp.propiedades[i].actualizaPropietarioPorConversion(jEsp)
       end
       
       jEsp
