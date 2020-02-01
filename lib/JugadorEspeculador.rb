@@ -8,13 +8,13 @@ module Civitas
   class JugadorEspeculador < Jugador
     
     @FactorEspeculador = 2
-    @CasasMax = Jugador.CasasMax * @FactorEspeculador
-    @HotelesMax = Jugador.HotelesMax * @FactorEspeculador
+    @casasMax = Jugador.CasasMax * @FactorEspeculador
+    @hotelesMax = Jugador.HotelesMax * @FactorEspeculador
     
     def initialize(fianza)
       @fianza = fianza
     end
-    
+  
     attr_accessor :fianza
     
     def self.nuevoEspeculador(jugador, fianza)

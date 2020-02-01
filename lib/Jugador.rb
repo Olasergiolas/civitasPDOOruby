@@ -251,14 +251,14 @@ module Civitas
     
     def puedoEdificarCasa(propiedad)
       puedo = false
-      if propiedad.numCasas < @@casasMax && puedoGastar(propiedad.precioEdificar)
+      if propiedad.numCasas < getCasasMax && puedoGastar(propiedad.precioEdificar)
         puedo = true        
       end
     end
     
     def puedoEdificarHotel(propiedad)
       puedo = false
-      if propiedad.numHoteles < @@hotelesMax && propiedad.numCasas >= @@casasPorHotel && puedoGastar(propiedad.precioEdificar)
+      if propiedad.numHoteles < getHotelesMax && propiedad.numCasas >= @@casasPorHotel && puedoGastar(propiedad.precioEdificar)
         puedo = true
       end
     end
@@ -356,7 +356,7 @@ module Civitas
     
     protected :debeSerEncarcelado
     
-    private :getHotelesMax, :getCasasMax, :existeLaPropiedad, :getPremioPasoSalida, :perderSalvoconducto, :puedeSalirCarcelPagando, :puedoEdificarCasa, :puedoEdificarHotel, :puedoGastar
+    private :getHotelesMax, :existeLaPropiedad, :getPremioPasoSalida, :perderSalvoconducto, :puedeSalirCarcelPagando, :puedoEdificarCasa, :puedoEdificarHotel, :puedoGastar
     private_class_method :getPrecioLibertad
   end
 end

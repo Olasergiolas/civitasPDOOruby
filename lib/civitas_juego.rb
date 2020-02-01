@@ -28,7 +28,7 @@ module Civitas
         end
         @indiceJugadorActual = Dado.instance.quienEmpieza(@jugadores.size)
         @mazo = MazoSorpresas.new
-        @tablero = Tablero.new(1)
+        @tablero = Tablero.new(3)
         @gestorEstados = Gestor_estados.new
         @estado = @gestorEstados.estado_inicial
         inicializarTablero(@mazo)
@@ -159,6 +159,7 @@ module Civitas
         titulo6 = TituloPropiedad.new("Teo",200,10,150,600,300)
         
         sorpresa1 = CasillaSorpresa.new("Sorpresa", @mazo)
+        
         @tablero.aniadeCasilla(sorpresa1)
                 
         @tablero.aniadeCasilla(CasillaCalle.new(titulo1))
@@ -168,7 +169,8 @@ module Civitas
         @tablero.aniadeCasilla(CasillaCalle.new(titulo5))
         @tablero.aniadeCasilla(CasillaCalle.new(titulo6))
 
-
+        
+        
         @tablero.aniadeJuez
 
         descanso = Casilla.new("Parking")
